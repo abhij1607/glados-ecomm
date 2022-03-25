@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
 const Nav = () => {
   return (
     <header className="top-nav">
       <nav className="brand-nav navigation box-shadow">
         <div className="nav-col nv-col-1">
-          <a className="nav-brand" href="/">
+          <Link className="nav-brand" to="/">
             GLaDOS
-          </a>
+          </Link>
           <div className="nav-col nv-col-2">
             <input
               type="search"
@@ -19,19 +20,19 @@ const Nav = () => {
           </div>
           <ul id="main-menu" className="list-non-bullets align-right">
             <li className="list-item-inline">
-              <a className="link" href="./wishlist.html">
+              <Link className="link" to="./wishlist.html">
                 <i className="fas fa-heart" />
-              </a>
+              </Link>
             </li>
             <li className="list-item-inline">
-              <a className="link" href="./cart.html">
+              <Link className="link" to="./cart.html">
                 <i className="fas fa-shopping-cart">Cart</i>
-              </a>
+              </Link>
             </li>
             <li className="list-item-inline">
-              <a className="btn btn-primary-outline" href="./login.html">
+              <Link className="btn btn-primary-outline" to="./login.html">
                 Login
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -40,29 +41,29 @@ const Nav = () => {
       <nav className="pdt-category-bar box-shadow navigation">
         <ul className="align-center list-structure">
           <li className="list-item-inline">
-            <a className="link" href="./product.html">
+            <Link className="link" to="./product.html">
               Playstation
-            </a>
+            </Link>
           </li>
           <li className="list-item-inline">
-            <a className="link" href="./product.html">
+            <Link className="link" to="./product.html">
               Xbox
-            </a>
+            </Link>
           </li>
           <li className="list-item-inline">
-            <a className="link" href="./product.html">
+            <Link className="link" to="./product.html">
               Nintendo
-            </a>
+            </Link>
           </li>
           <li className="list-item-inline">
-            <a className="link" href="./product.html">
+            <Link className="link" to="./product.html">
               Mobile Games
-            </a>
+            </Link>
           </li>
           <li className="list-item-inline">
-            <a className="link" href="./product.html">
+            <Link className="link" to="./product.html">
               Deals
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
