@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+.top-nav .brand-nav {
+  background-color: var(--primary-color);
+  color: var(--txt-clr-secondary);
+}
+.brand-nav.navigation .nav-brand {
+  color: var(--txt-clr-secondary);
+}
+.brand-nav.navigation .link {
+  color: var(--txt-clr-secondary);
+}
+.brand-nav.navigation .input-search {
+  width: 100%;
+}
+.btn-primary-outline {
+  background-color: var(--white);
+  color: var(--primary-color);
+}
+.card-container:hover {
+  cursor: pointer;
+  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 80%), 0 1px 1px 0 rgb(0 0 0 / 50%),
+    0 1px 3px 0 rgb(0 0 0 / 80%);
+}
+.brand-nav ul {
+  display: flex;
+  align-items: center;
+}

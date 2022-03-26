@@ -1,0 +1,62 @@
+:root {
+  --primary-color: #2874f0;
+  --secondary-color: #d4d4d4;
+  --background-color: #f4f4f4;
+  --complementry-color: #525252;
+  --dark-color: #262626;
+
+  --primary-text: #000000;
+  --sec-text: #2f2e41;
+
+  --txt-clr-primary: var(--primary-color);
+  --txt-clr-secondary: #ffffff;
+  --txt-clr-secondary-light: var(--secondary-color);
+  --txt-clr-tertiary: #000000;
+  --txt-clr-tertiary-light: var(--sec-text);
+
+  --black: #000000;
+  --white: #ffffff;
+
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+
+  --primary-light-color: #cfe2ff;
+  --secondary-light-color: #d0c5c5;
+  --success-light-color: #d1e7dd;
+  --danger-light-color: #f8d7da;
+  --warning-light-color: #fff385;
+  --info-light-color: #cff4fc;
+
+  --size-480: 48rem;
+  --size-320: 32rem;
+  --size-54: 5.4rem;
+  --size-48: 4.8rem;
+  --size-40: 4rem;
+  --size-32: 3.2rem;
+  --size-24: 2.4rem;
+  --size-16: 1.6rem;
+  --size-12: 1.2rem;
+  --size-8: 8px;
+  --size-4: 4px;
+
+  --size-2xs: 4px;
+  --size-xs: 8px;
+  --size-sm: 1.2rem;
+  --size-base: 1.6rem;
+  --size-md: 1.8rem;
+  --size-lg: 2.4rem;
+  --size-xl: 3.2rem;
+  --size-2xl: 4rem;
+  --size-3xl: 4.8rem;
+  --font-wt-thin: 100;
+  --font-wt-extralight: 200;
+  --font-wt-light: 300;
+  --font-wt-normal: 400;
+  --font-wt-medium: 500;
+  --font-wt-semibold: 600;
+  --font-wt-bold: 700;
+  --font-wt-extrabold: 800;
+  --font-wt-bolder: 900;
+}
