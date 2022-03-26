@@ -2,11 +2,6 @@ import axios from "axios";
 import { useState, createContext, useContext, useEffect } from "react";
 import { Categories } from "../pages/Home/categories";
 
-// const fetchCategories = async () => {
-//   const response = await axios.get("/api/categories");
-//   return response.data.categories;
-// };
-
 const CategoriesContext = createContext(null);
 
 const CategoriesProvider = ({ children }) => {
