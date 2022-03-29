@@ -1,0 +1,41 @@
+/*filter aside*/
+.filter-container {
+  flex-basis: var(--size-320);
+}
+.filter-title,
+.filter-price-range {
+  align-items: center;
+  justify-content: space-between;
+}
+.filter-price-input {
+  width: 100%;
+}
+/*product cards*/
+.card-categories {
+  max-width: 140rem;
+  margin: 0 auto;
+}
+.card-container {
+  width: var(--size-320);
+  border: var(--size-16);
+}
+.card-action {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--size-8);
+  align-items: center;
+}
+.card-img-top {
+  border-top-right-radius: var(--size-16);
+  border-top-left-radius: var(--size-16);
+}
+.card-cost {
+  font-size: var(--size-24);
+  font-weight: 700;
+}
+.wishlist-icon {
+  position: absolute;
+  top: var(--size-8);
+  right: var(--size-8);
+  color: var(--secondary-color);
+}
