@@ -30,6 +30,12 @@
 .navigation .link-active {
   font-weight: bold;
 }
+.badge.badge-notification {
+  right: 15%;
+  top: -5px;
+  background-color: var(--info);
+}
+
 /* footer */
 .footer {
   background-color: var(--dark-color);
