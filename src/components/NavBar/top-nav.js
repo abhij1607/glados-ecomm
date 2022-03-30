@@ -36,7 +36,7 @@ const TopNav = () => {
           <li className="list-item-inline badge-box">
             <Link className="link" to="./cart">
               <i className="fas fa-2x fa-shopping-cart" />
-              {productState.wishlist.length > 0 ? (
+              {productState.cart.length > 0 ? (
                 <span className="badge badge-notification">
                   {productState.cart.length}
                 </span>
