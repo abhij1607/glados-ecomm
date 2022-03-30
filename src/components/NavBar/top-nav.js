@@ -20,17 +20,17 @@ const TopNav = () => {
         </div>
         <ul id="main-menu" className="list-non-bullets align-right">
           <li className="list-item-inline">
-            <Link className="link" to="./wishlist.html">
+            <Link className="link" to="./wishlist">
               <i className="fas fa-heart" />
             </Link>
           </li>
           <li className="list-item-inline">
-            <Link className="link" to="./cart.html">
+            <Link className="link" to="./cart">
               <i className="fas fa-shopping-cart">Cart</i>
             </Link>
           </li>
           <li className="list-item-inline">
-            <Link className="btn btn-primary-outline" to="./login.html">
+            <Link className="btn btn-primary-outline" to="./login">
               Login
             </Link>
           </li>

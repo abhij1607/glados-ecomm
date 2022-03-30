@@ -1,0 +1,37 @@
+/*main pane*/
+.main-pane {
+  margin: 0 auto;
+}
+/*product cards*/
+.card-categories {
+  max-width: 120rem;
+}
+.card-categories .list-structure {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.card-container {
+  width: var(--size-320);
+  border: var(--size-16);
+  margin: var(--size-16) auto;
+}
+.card-action {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--size-8);
+  align-items: center;
+}
+.card-img-top {
+  border-top-right-radius: var(--size-16);
+  border-top-left-radius: var(--size-16);
+}
+.card-cost {
+  font-size: var(--size-24);
+  font-weight: 700;
+}
+.wishlist-icon {
+  position: absolute;
+  top: var(--size-8);
+  right: var(--size-8);
+  color: var(--danger);
+}
