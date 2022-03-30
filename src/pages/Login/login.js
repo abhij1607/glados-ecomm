@@ -10,17 +10,13 @@ const Login = () => {
   const loginRequest = async (e) => {
     e.preventDefault();
     const data = { email, password };
-    console.log(data);
     try {
       const loginResponse = await axios.post("/api/auth/login", data);
-      console.log(loginResponse);
       setResponse(loginResponse.data);
     } catch (error) {
       console.log(error);
     }
   };
-
-  useEffect(() => {});
 
   return (
     <div className="wrapper wrapper-signup">
@@ -61,7 +57,7 @@ const Login = () => {
                 <input type="checkbox" />
                 Remember me
               </label>
-              <a href className="align-right">
+              <a href="#" className="align-right">
                 Forgot your Password
               </a>
             </div>
