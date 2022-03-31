@@ -3,7 +3,6 @@ import { useUserProducts } from "../../context/user-products-context";
 
 const Wishlist = () => {
   const { productState, productDispatch } = useUserProducts();
-  console.log(productState);
   return (
     <div className="wrapper">
       <main className="main-pane auto-container">
