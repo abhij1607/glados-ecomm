@@ -12,7 +12,6 @@ const Wishlist = () => {
             ` {productState.wishlist.length} Items`
           </span>
         </h1>
-        {/* category list cards */}
         <section className="card-categories">
           <ul className="list-structure">
             {productState.wishlist.map((product) => {
@@ -60,7 +59,6 @@ const Wishlist = () => {
             })}
           </ul>
         </section>
-        {/* end category list cards */}
       </main>
     </div>
   );
