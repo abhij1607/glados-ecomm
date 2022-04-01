@@ -12,7 +12,6 @@ const Wishlist = () => {
             ` {productState.wishlist.length} Items`
           </span>
         </h1>
-        {/* category list cards */}
         <section className="card-categories">
           <ul className="list-structure">
             {productState.wishlist.map((product) => {
@@ -30,7 +29,17 @@ const Wishlist = () => {
                     <div className="card-action">
                       <span className="card-cost">{product.price}₹</span>
                       <button className="btn btn-primary btn-lg">
-                        <i className="fas fa-shopping-cart">Add to Cart</i>
+                        <i
+                          className="fas fa-shopping-cart"
+                          onClick={() =>
+                            productDispatch({
+                              type: "ADD_TO_CART",
+                              payload: product,
+                            })
+                          }
+                        >
+                          Add to Cart
+                        </i>
                       </button>
                       <button
                         className="wishlist-icon fill"
@@ -50,7 +59,6 @@ const Wishlist = () => {
             })}
           </ul>
         </section>
-        {/* end category list cards */}
       </main>
     </div>
   );

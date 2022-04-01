@@ -1,0 +1,42 @@
+.wrapper.wrapper-cart {
+  display: grid;
+  grid-template-columns: 60% 1fr 10%;
+}
+/*filter aside*/
+.bill-container {
+  flex-basis: var(--size-480);
+  height: fit-content;
+  margin-top: 80px;
+}
+.bill-price-container {
+  align-items: center;
+  justify-content: space-between;
+}
+.bill-title,
+.bill-price-final {
+  border-bottom: 1px solid var(--secondary-color);
+}
+.bill-price-final {
+  border-top: 1px solid var(--secondary-color);
+}
+/*product cards*/
+.card-categories {
+  max-width: 120rem;
+}
+.cart.card-container {
+  width: 56rem;
+  border: var(--size-16);
+}
+.card-action {
+  padding: var(--size-8);
+}
+.card-img-border {
+  border-radius: var(--size-16);
+}
+.card-cost {
+  font-size: var(--size-24);
+  font-weight: 700;
+}
+.img-box {
+  width: 32rem;
+}
