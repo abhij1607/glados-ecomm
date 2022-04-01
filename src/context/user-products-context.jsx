@@ -23,7 +23,6 @@ const userProductReducer = (state, action) => {
       const updatedCart = [...state.cart].map((item) => {
         if (item._id === action.payload._id) {
           itemFound = true;
-          console.log(item);
           return { ...item, count: item.count + 1 };
         }
         return item;
