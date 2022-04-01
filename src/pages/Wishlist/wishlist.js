@@ -30,7 +30,17 @@ const Wishlist = () => {
                     <div className="card-action">
                       <span className="card-cost">{product.price}₹</span>
                       <button className="btn btn-primary btn-lg">
-                        <i className="fas fa-shopping-cart">Add to Cart</i>
+                        <i
+                          className="fas fa-shopping-cart"
+                          onClick={() =>
+                            productDispatch({
+                              type: "ADD_TO_CART",
+                              payload: product,
+                            })
+                          }
+                        >
+                          Add to Cart
+                        </i>
                       </button>
                       <button
                         className="wishlist-icon fill"
