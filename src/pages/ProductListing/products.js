@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useData } from "../../context/data-context";
+import { useUserProducts } from "../../context/user-products-context";
 import { useEffect } from "react";
 import {
   sortedData,
@@ -35,6 +36,8 @@ const Products = () => {
     filterRating,
     filterCategories
   )(dataState, dataState.products);
+
+  const { productState, productDispatch } = useUserProducts();
   return (
     <main>
       <section className="card-categories auto-container">
@@ -56,9 +59,33 @@ const Products = () => {
                     <button className="btn btn-primary btn-lg">
                       <i className="fas fa-shopping-cart">Add to Cart</i>
                     </button>
-                    <button className="wishlist-icon">
-                      <i className="fa fa-2x fa-heart" />
-                    </button>
+                    {productState.wishlist.some(
+                      (item) => item._id === product._id
+                    ) ? (
+                      <button
+                        className="wishlist-icon fill"
+                        onClick={() =>
+                          productDispatch({
+                            type: "REMOVE_FROM_WISHLIST",
+                            payload: product,
+                          })
+                        }
+                      >
+                        <i className="fa fa-2x fa-heart" />
+                      </button>
+                    ) : (
+                      <button
+                        className="wishlist-icon"
+                        onClick={() =>
+                          productDispatch({
+                            type: "ADD_TO_WISHLIST",
+                            payload: product,
+                          })
+                        }
+                      >
+                        <i className="fa fa-2x fa-heart" />
+                      </button>
+                    )}
                   </div>
                 </div>
               </li>

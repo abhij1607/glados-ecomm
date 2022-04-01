@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useUserProducts } from "../../context/user-products-context";
 
 const TopNav = () => {
+  const { productState } = useUserProducts();
   return (
     <nav className="brand-nav navigation box-shadow">
       <div className="nav-col nv-col-1">
@@ -19,14 +21,28 @@ const TopNav = () => {
           </button>
         </div>
         <ul id="main-menu" className="list-non-bullets align-right">
-          <li className="list-item-inline">
+          <li className="list-item-inline badge-box">
             <Link className="link" to="./wishlist">
-              <i className="fas fa-heart" />
+              <i className="fas fa-2x fa-heart" />
+              {productState.wishlist.length > 0 ? (
+                <span className="badge badge-notification">
+                  {productState.wishlist.length}
+                </span>
+              ) : (
+                ""
+              )}
             </Link>
           </li>
-          <li className="list-item-inline">
+          <li className="list-item-inline badge-box">
             <Link className="link" to="./cart">
-              <i className="fas fa-shopping-cart">Cart</i>
+              <i className="fas fa-2x fa-shopping-cart" />
+              {productState.cart.length > 0 ? (
+                <span className="badge badge-notification">
+                  {productState.cart.length}
+                </span>
+              ) : (
+                ""
+              )}
             </Link>
           </li>
           <li className="list-item-inline">
