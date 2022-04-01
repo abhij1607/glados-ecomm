@@ -38,7 +38,7 @@ const TopNav = () => {
               <i className="fas fa-2x fa-shopping-cart" />
               {productState.cart.length > 0 ? (
                 <span className="badge badge-notification">
-                  {productState.cart.length}
+                  {productState.cartCounter}
                 </span>
               ) : (
                 ""
