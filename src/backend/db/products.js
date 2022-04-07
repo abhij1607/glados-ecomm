@@ -132,7 +132,7 @@ export const products = [
     maxPrice: "6000",
     price: "1950",
     platform: "PlayStation",
-    genre: "shooter",
+    genre: "Shooter",
     brand: "Sony",
     image:
       "https://cdn.game.net/image/upload/w_750,f_auto,q_auto/v1/game_img/merch2021/Games/StrangersOfParadise/StrangersOfParadise-E.jpg",
@@ -144,7 +144,7 @@ export const products = [
     maxPrice: "6000",
     price: "2250",
     platform: "PlayStation",
-    genre: "shooter",
+    genre: "Shooter",
     brand: "Sony",
     image:
       "https://cdn.game.net/image/upload/w_750,f_auto,q_auto/v1/game_img/merch2021/Games/StrangersOfParadise/StrangersOfParadise-E.jpg",
@@ -156,7 +156,7 @@ export const products = [
     maxPrice: "6000",
     price: "4200",
     platform: "Xbox",
-    genre: "shooter",
+    genre: "Shooter",
     brand: "Microsoft",
     image:
       "https://cdn.game.net/image/upload/w_750,f_auto,q_auto/v1/game_img/merch2021/Games/StrangersOfParadise/StrangersOfParadise-E.jpg",
@@ -168,7 +168,7 @@ export const products = [
     maxPrice: "6000",
     price: "900",
     platform: "Xbox",
-    genre: "shooter",
+    genre: "Shooter",
     brand: "Microsoft",
     image:
       "https://cdn.game.net/image/upload/w_750,f_auto,q_auto/v1/game_img/merch2021/Games/StrangersOfParadise/StrangersOfParadise-E.jpg",
@@ -180,7 +180,7 @@ export const products = [
     maxPrice: "6000",
     price: "1200",
     platform: "Xbox",
-    genre: "shooter",
+    genre: "Shooter",
     brand: "Tencent",
     image:
       "https://cdn.game.net/image/upload/w_750,f_auto,q_auto/v1/game_img/merch2021/Games/StrangersOfParadise/StrangersOfParadise-E.jpg",
@@ -192,7 +192,7 @@ export const products = [
     maxPrice: "6000",
     price: "1800",
     platform: "Xbox",
-    genre: "shooter",
+    genre: "Shooter",
     brand: "Tencent",
     image:
       "https://cdn.game.net/image/upload/w_750,f_auto,q_auto/v1/game_img/merch2021/Games/StrangersOfParadise/StrangersOfParadise-E.jpg",
@@ -204,7 +204,7 @@ export const products = [
     maxPrice: "6000",
     price: "1800",
     platform: "Xbox",
-    genre: "shooter",
+    genre: "Shooter",
     brand: "Sony",
     image:
       "https://cdn.game.net/image/upload/w_750,f_auto,q_auto/v1/game_img/merch2021/Games/StrangersOfParadise/StrangersOfParadise-E.jpg",
@@ -216,7 +216,7 @@ export const products = [
     maxPrice: "6000",
     price: "1300",
     platform: "Xbox",
-    genre: "shooter",
+    genre: "Shooter",
     brand: "EA",
     image:
       "https://cdn.game.net/image/upload/w_750,f_auto,q_auto/v1/game_img/merch2021/Games/StrangersOfParadise/StrangersOfParadise-E.jpg",
