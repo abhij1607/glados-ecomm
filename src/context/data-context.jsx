@@ -44,6 +44,14 @@ const dataReducer = (state, action) => {
           : [...state.selectedGenres, action.payload],
       };
 
+    case "RESET":
+      return {
+        ...initialState,
+        categories: state.categories,
+        products: state.products,
+        genres: state.genres,
+      };
+
     default:
       return state;
   }
