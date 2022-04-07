@@ -7,6 +7,7 @@ import {
   filterPrice,
   filterRating,
   filterCategories,
+  filterGenres,
 } from "../../utils/filter-util";
 
 const Products = () => {
@@ -34,7 +35,8 @@ const Products = () => {
     sortedData,
     filterPrice,
     filterRating,
-    filterCategories
+    filterCategories,
+    filterGenres
   )(dataState, dataState.products);
 
   const { productState, productDispatch } = useUserProducts();
