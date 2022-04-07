@@ -29,6 +29,7 @@
 }
 .navigation .link-active {
   font-weight: bold;
+  border-bottom: 2px var(--primary-color) solid;
 }
 .badge.badge-notification {
   right: 15%;

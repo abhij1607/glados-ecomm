@@ -39,3 +39,12 @@
   right: var(--size-8);
   color: var(--secondary-color);
 }
+.product-rating {
+  background-color: var(--primary-light-color);
+}
+
+@media (max-width: 768px) {
+  .filter-container {
+    display: none;
+  }
+}
