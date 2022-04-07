@@ -13,7 +13,7 @@ const NavCategories = () => {
         const categoriesResponse = await axios.get("/api/categories");
         dataDispatch({
           type: "CATEGORIES",
-          payload: categoriesResponse.data.categories,
+          payload: categoriesResponse.data.categories[0].platform,
         });
       } catch (error) {
         console.log(error);
