@@ -23,7 +23,13 @@ const Filter = () => {
     <aside className="filter-container box-shadow auto-container">
       <div className="filter-title flex-row">
         <h3>FILTERS</h3>
-        <button type="reset" className="link">
+        <button
+          type="reset"
+          className="link btn"
+          onClick={() => {
+            dataDispatch({ type: "RESET" });
+          }}
+        >
           Clear
         </button>
       </div>
@@ -61,11 +67,16 @@ const Filter = () => {
                 name="genre-select-option"
                 id={`filter-genre-${category.categoryName}`}
                 className="filter-category-checkbox"
-                onClick={() =>
+                onChange={() =>
                   dataDispatch({
                     type: "SELECTED_GENRES",
                     payload: category.categoryName,
                   })
+                }
+                checked={
+                  dataState.selectedGenres.includes(category.categoryName)
+                    ? true
+                    : false
                 }
               />
               {category.categoryName}
@@ -139,6 +150,7 @@ const Filter = () => {
             onChange={(e) =>
               dataDispatch({ type: "SORTBY", payload: "LOW_TO_HIGH" })
             }
+            checked={dataState.sortBy === "LOW_TO_HIGH" ? true : false}
           />
           Price - Low to High
         </label>
@@ -150,6 +162,7 @@ const Filter = () => {
             onChange={(e) =>
               dataDispatch({ type: "SORTBY", payload: "HIGH_TO_LOW" })
             }
+            checked={dataState.sortBy === "HIGH_TO_LOW" ? true : false}
           />
           Price - High to Low
         </label>
