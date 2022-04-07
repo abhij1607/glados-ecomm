@@ -18,5 +18,4 @@ Check out the live pages here:
 - [Products page](https://glados-ecomm.netlify.app//product)
 - [Cart Management page](https://glados-ecomm.netlify.app/cart)
 - [Wishlist Management page](https://glados-ecomm.netlify.app/wishlist)
-- [Signup page](https://glados-ecomm.netlify.app/signup)
 - [Login page](https://glados-ecomm.netlify.app/login)
