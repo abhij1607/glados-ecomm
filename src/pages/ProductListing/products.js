@@ -41,7 +41,7 @@ const Products = () => {
 
   const { productState, productDispatch } = useUserProducts();
   return (
-    <main>
+    <main className="main">
       <section className="card-categories auto-container">
         <ul className="list-structure">
           {finalProducts.map((product) => {
@@ -55,6 +55,13 @@ const Products = () => {
                   />
                   <div className="card-info">
                     <h3 className="card-title">{product.title}</h3>
+                    <div className="flex-row">
+                      <span>{product.genre}</span>
+                      <span className="align-right product-rating pd-x-base">
+                        <i className="fa fa-star" aria-hidden="true"></i>
+                        {product.ratings}
+                      </span>
+                    </div>
                   </div>
                   <div className="card-action">
                     <span className="card-cost">{product.price}₹</span>

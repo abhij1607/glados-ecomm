@@ -2,6 +2,9 @@
   display: flex;
   min-height: 100vh;
 }
+.main {
+  flex-grow: 1;
+}
 .top-nav .brand-nav {
   background-color: var(--primary-color);
   color: var(--txt-clr-secondary);

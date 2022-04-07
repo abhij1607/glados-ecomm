@@ -40,3 +40,18 @@
 .img-box {
   width: 32rem;
 }
+@media (max-width: 768px) {
+  .cart.card-container {
+    width: 100%;
+    flex-direction: column;
+  }
+  .wrapper.wrapper-cart {
+    grid-template-columns: 1fr;
+  }
+  .img-box {
+    width: 100%;
+  }
+  #main-menu {
+    display: none;
+  }
+}
