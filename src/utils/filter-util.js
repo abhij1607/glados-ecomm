@@ -28,4 +28,19 @@ const filterCategories = (state, products) => {
   return products;
 };
 
-export { filterCategories, filterRating, filterPrice, sortedData };
+const filterGenres = (state, products) => {
+  if (state.selectedGenres.length !== 0) {
+    return products.filter((product) =>
+      state.selectedGenres.includes(product.genre)
+    );
+  }
+  return products;
+};
+
+export {
+  filterCategories,
+  filterRating,
+  filterPrice,
+  sortedData,
+  filterGenres,
+};

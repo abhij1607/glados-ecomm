@@ -5,10 +5,12 @@ const DataContext = createContext(null);
 const initialState = {
   categories: [],
   products: [],
+  genres: [],
   platform: null,
   sortBy: null,
   ratings: 1,
   maxPrice: 5000,
+  selectedGenres: [],
 };
 
 const dataReducer = (state, action) => {
@@ -18,6 +20,9 @@ const dataReducer = (state, action) => {
 
     case "PRODUCTS":
       return { ...state, products: action.payload };
+
+    case "GENRES":
+      return { ...state, genres: action.payload };
 
     case "PLATFORM":
       return { ...state, platform: action.payload };
@@ -30,6 +35,14 @@ const dataReducer = (state, action) => {
 
     case "MAX_PRICE":
       return { ...state, maxPrice: action.payload };
+
+    case "SELECTED_GENRES":
+      return {
+        ...state,
+        selectedGenres: state.selectedGenres.includes(action.payload)
+          ? state.selectedGenres.filter((item) => item !== action.payload)
+          : [...state.selectedGenres, action.payload],
+      };
 
     default:
       return state;

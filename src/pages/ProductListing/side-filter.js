@@ -1,6 +1,24 @@
 import { useData } from "../../context/data-context";
+import { useEffect } from "react";
+import axios from "axios";
+
 const Filter = () => {
   const { dataState, dataDispatch } = useData();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const categoriesResponse = await axios.get("/api/categories");
+        dataDispatch({
+          type: "GENRES",
+          payload: categoriesResponse.data.categories[0].genre,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
   return (
     <aside className="filter-container box-shadow auto-container">
       <div className="filter-title flex-row">
@@ -28,6 +46,32 @@ const Filter = () => {
           }
           className="filter-price-input"
         />
+      </div>
+
+      <div className="filter-category-container flex-column">
+        <h3>Category by Genre</h3>
+        {dataState.genres.map((category) => {
+          return (
+            <label
+              className="p-lg"
+              htmlFor={`filter-genre-${category.categoryName}`}
+            >
+              <input
+                type="checkbox"
+                name="genre-select-option"
+                id={`filter-genre-${category.categoryName}`}
+                className="filter-category-checkbox"
+                onClick={() =>
+                  dataDispatch({
+                    type: "SELECTED_GENRES",
+                    payload: category.categoryName,
+                  })
+                }
+              />
+              {category.categoryName}
+            </label>
+          );
+        })}
       </div>
 
       <div className="filter-rating-container flex-column">
