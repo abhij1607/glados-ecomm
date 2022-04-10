@@ -21,15 +21,15 @@ const TopNav = () => {
         </button>
       </div>
 
-      <div className="flex-row wd-full">
+      <div className="flex-row wd-full search-div">
         <input
           type="search"
           className="input input-search input-primary"
           id="gsearch"
           name="gsearch"
         />
-        <button className="btn btn-primary" type="submit">
-          <i className="fas fa-search" title="search" />
+        <button className="btn btn-search" type="search">
+          <i className="fas fa-2x fa-search" title="search" />
         </button>
       </div>
       <aside
@@ -40,13 +40,13 @@ const TopNav = () => {
       >
         <div className="drawer-header pd-y-base pd-x-base flex-row">
           <div className="drawer-title">
-            <i class="fa fa-2x fa-user" aria-hidden="true"></i>
+            <i className="fa fa-2x fa-user" aria-hidden="true"></i>
           </div>
           <button
             className="align-right"
             onClick={() => setIsSideDrawerActive(false)}
           >
-            <i class="fa fa-2x fa-times" aria-hidden="true"></i>
+            <i className="fa fa-2x fa-times" aria-hidden="true"></i>
           </button>
         </div>
         <div className="drawer-content">

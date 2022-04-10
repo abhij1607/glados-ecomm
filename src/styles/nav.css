@@ -65,8 +65,24 @@
   -webkit-transform: rotate(45deg) translate(-8px, -8px);
   transform: rotate(45deg) translate(-8px, -8px);
 }
+.search-div {
+  position: relative;
+}
+.brand-nav.navigation .input-search {
+  height: auto;
+  font-size: var(--size-md);
+  padding-left: var(--size-xl);
+}
+.btn.btn-search {
+  position: absolute;
+  left: 6px;
+  top: 3px;
+  background-color: var(--txt-clr-secondary);
+  color: var(--primary-color);
+  padding: unset;
+}
 
-/*side bar*/
+/*Toggle menu*/
 .sidebar-nav {
   min-width: 200px;
   height: 100%;
