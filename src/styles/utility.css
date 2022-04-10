@@ -80,3 +80,7 @@
 .wrap {
   flex-wrap: wrap;
 }
+/*width*/
+.wd-full {
+  width: 100%;
+}
