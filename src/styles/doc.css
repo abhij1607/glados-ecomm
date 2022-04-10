@@ -5,10 +5,7 @@
 .main {
   flex-grow: 1;
 }
-.top-nav .brand-nav {
-  background-color: var(--primary-color);
-  color: var(--txt-clr-secondary);
-}
+
 .brand-nav.navigation .nav-brand {
   color: var(--txt-clr-secondary);
 }

@@ -1,57 +1,115 @@
 import { Link } from "react-router-dom";
 import { useUserProducts } from "../../context/user-products-context";
+import { useState } from "react";
 
 const TopNav = () => {
   const { productState } = useUserProducts();
+  const [isSideDrawerActive, setIsSideDrawerActive] = useState(false);
   return (
-    <nav className="brand-nav navigation box-shadow">
-      <div className="nav-col nv-col-1">
-        <Link className="nav-brand" to="/">
+    <nav className="brand-nav navigation gap-1 box-shadow">
+      <div className="flex-row wd-full">
+        <Link className="logo-brand" to="/">
           GLaDOS
         </Link>
-        <div className="nav-col nv-col-2">
-          <input
-            type="search"
-            className="input input-search input-primary"
-            id="gsearch"
-            name="gsearch"
-          />
-          <button className="btn btn-primary" type="submit">
-            <i className="fas fa-search" title="search" />
+        <button
+          className="menu-icon align-right"
+          onClick={() => setIsSideDrawerActive(true)}
+        >
+          <div className="bar1" />
+          <div className="bar2" />
+          <div className="bar3" />
+        </button>
+      </div>
+
+      <div className="flex-row wd-full">
+        <input
+          type="search"
+          className="input input-search input-primary"
+          id="gsearch"
+          name="gsearch"
+        />
+        <button className="btn btn-primary" type="submit">
+          <i className="fas fa-search" title="search" />
+        </button>
+      </div>
+      <aside
+        id="side-nav"
+        className={`sidebar-nav modal-nav ${
+          isSideDrawerActive ? "active" : ""
+        }`}
+      >
+        <div className="drawer-header pd-y-base pd-x-base flex-row">
+          <div className="drawer-title">
+            <i class="fa fa-2x fa-user" aria-hidden="true"></i>
+          </div>
+          <button
+            className="align-right"
+            onClick={() => setIsSideDrawerActive(false)}
+          >
+            <i class="fa fa-2x fa-times" aria-hidden="true"></i>
           </button>
         </div>
-        <ul id="main-menu" className="list-non-bullets align-right">
-          <li className="list-item-inline badge-box">
-            <Link className="link" to="./wishlist">
-              <i className="fas fa-2x fa-heart" />
-              {productState.wishlist.length > 0 ? (
-                <span className="badge badge-notification">
-                  {productState.wishlist.length}
-                </span>
-              ) : (
-                ""
-              )}
+        <div className="drawer-content">
+          <nav className="drawer-nav-list">
+            <Link className="nav-list-item" to="./cart">
+              <i className="fas fa-shopping-cart" />
+              My cart {productState.cartCounter}
             </Link>
-          </li>
-          <li className="list-item-inline badge-box">
-            <Link className="link" to="./cart">
-              <i className="fas fa-2x fa-shopping-cart" />
-              {productState.cart.length > 0 ? (
-                <span className="badge badge-notification">
-                  {productState.cartCounter}
-                </span>
-              ) : (
-                ""
-              )}
+            <Link className="nav-list-item" to="./wishlist">
+              <i className="fas fa-heart" />
+              My Wishlist {productState.wishlist.length}
             </Link>
-          </li>
-          <li className="list-item-inline">
-            <Link className="btn btn-primary-outline" to="./login">
+            <Link className="nav-list-item" to="./login">
+              <i className="fa fa-sign-in" aria-hidden="true"></i>
               Login
             </Link>
-          </li>
-        </ul>
-      </div>
+            <a className="nav-list-item">
+              <i className="fa fa-sign-in" aria-hidden="true"></i> Signup
+            </a>
+            <hr className="nav-divider" />
+            <a className="nav-list-item">
+              <i className="fas fa-cog" />
+              Settings
+            </a>
+            <a className="nav-list-item">
+              <i className="fas fa-info" />
+              Help &amp; feedback
+            </a>
+          </nav>
+        </div>
+      </aside>
+
+      <ul id="main-menu" className="">
+        <li className="list-item-inline badge-box">
+          <Link className="link" to="./wishlist">
+            <i className="fas fa-2x fa-heart" />
+            {productState.wishlist.length > 0 ? (
+              <span className="badge badge-notification">
+                {productState.wishlist.length}
+              </span>
+            ) : (
+              ""
+            )}
+          </Link>
+        </li>
+        <li className="list-item-inline badge-box">
+          <Link className="link" to="./cart">
+            <i className="fas fa-2x fa-shopping-cart" />
+            {productState.cart.length > 0 ? (
+              <span className="badge badge-notification">
+                {productState.cartCounter}
+              </span>
+            ) : (
+              ""
+            )}
+          </Link>
+        </li>
+        <li className="list-item-inline">
+          <Link className="btn btn-primary-outline" to="./login">
+            Login
+          </Link>
+        </li>
+      </ul>
     </nav>
   );
 };
