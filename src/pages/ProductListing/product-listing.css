@@ -1,4 +1,7 @@
 /*filter aside*/
+.mobile-filter {
+  display: none;
+}
 .filter-container {
   flex-basis: var(--size-320);
 }
@@ -46,5 +49,29 @@
 @media (max-width: 768px) {
   .filter-container {
     display: none;
+  }
+  .mobile-filter {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    z-index: 5;
+    background-color: var(--txt-clr-secondary);
+    display: flex;
+  }
+  .btn.mobile-filter-btn {
+    background-color: var(--primary-color);
+    color: var(--txt-clr-secondary);
+    font-size: var(--size-md);
+    margin: 1.6rem auto;
+  }
+  .filter-mobile-screen {
+    display: block;
+    position: fixed;
+    background-color: #fff;
+    z-index: 9;
+    width: 100%;
+    top: 0;
+    overflow: hidden;
+    height: 100vh;
   }
 }
