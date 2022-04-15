@@ -77,6 +77,7 @@ const Filter = () => {
               <label
                 className="p-lg"
                 htmlFor={`filter-genre-${category.categoryName}`}
+                key={category.categoryName}
               >
                 <input
                   type="checkbox"
