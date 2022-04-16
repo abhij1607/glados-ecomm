@@ -1,3 +1,7 @@
+/*root*/
+#root {
+  overflow-x: hidden;
+}
 /*filter aside*/
 .mobile-filter {
   display: none;
