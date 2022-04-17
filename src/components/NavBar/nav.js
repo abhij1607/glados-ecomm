@@ -1,5 +1,5 @@
-import { TopNav } from "./top-nav";
-import { NavCategories } from "./nav-categories";
+import { TopNav } from "./nav-components/top-nav";
+import { NavCategories } from "./nav-components/nav-categories";
 
 const Nav = () => {
   return (
