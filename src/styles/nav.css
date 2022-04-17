@@ -96,6 +96,22 @@
 }
 
 /*modal-drawer*/
+.modal-wrapper {
+  display: none;
+}
+.modal-wrapper.fade {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+.modal-wrapper.show {
+  display: block;
+}
 .header button {
   padding-right: 1rem;
 }

@@ -1,8 +1,8 @@
-import { useData } from "../../context/data-context";
+import { useData } from "../../../context/data-context";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
-import { categories } from "../../backend/db/categories";
+import { categories } from "../../../backend/db/categories";
 
 const NavCategories = () => {
   const { dataState, dataDispatch } = useData();
