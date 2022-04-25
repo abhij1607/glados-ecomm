@@ -1,17 +1,29 @@
 import "./login.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../../context/auth-context";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [response, setResponse] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const testCredentials = {
+    email: "adarshbalika@gmail.com",
+    password: "adarshbalika",
+  };
+
+  const { userToken, userState, dispatchUserState } = useAuth();
 
   const loginRequest = async (e) => {
     e.preventDefault();
     const data = { email, password };
     try {
       const loginResponse = await axios.post("/api/auth/login", data);
+      dispatchUserState({ type: "LOGIN", payload: loginResponse.data });
+      navigate(location?.state?.from?.pathname || "/", { replace: true });
       setResponse(loginResponse.data);
     } catch (error) {
       console.log(error);
@@ -67,6 +79,17 @@ const Login = () => {
               value="Submit"
             >
               Submit
+            </button>
+            <button
+              className="btn btn-fill btn-primary btn-lg mg-y-base"
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                setEmail(testCredentials.email);
+                setPassword(testCredentials.password);
+              }}
+            >
+              Fill in test credentials
             </button>
           </form>
         </div>
