@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { useUserProducts } from "../../../context/user-products-context";
+import { useAuth } from "../../../context/auth-context";
 import { useState } from "react";
 
 const TopNav = () => {
   const { productState } = useUserProducts();
   const [isSideDrawerActive, setIsSideDrawerActive] = useState(false);
+  const { userToken, dispatchUserState } = useAuth();
   return (
     <nav className="brand-nav navigation gap-1 box-shadow">
       <div className="flex-row wd-full">
@@ -108,9 +110,20 @@ const TopNav = () => {
           </Link>
         </li>
         <li className="list-item-inline">
-          <Link className="btn btn-primary-outline" to="./login">
-            Login
-          </Link>
+          {userToken ? (
+            <button
+              className="btn btn-primary-outline pd-y-sm"
+              onClick={() => {
+                dispatchUserState({ type: "LOGOUT" });
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            <Link className="btn btn-primary-outline" to="./login">
+              Login
+            </Link>
+          )}
         </li>
       </ul>
     </nav>
