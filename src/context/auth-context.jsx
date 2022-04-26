@@ -3,21 +3,12 @@ import { createContext, useContext, useReducer } from "react";
 const AuthContext = createContext();
 
 const initialUserState = {
-  userToken: null,
-  userDetails: {
-    cart: [],
-    createdAt: "",
-    email: "",
-    firstName: "",
-    id: "",
-    lastName: "",
-    updatedAt: "",
-    wishlist: [],
-    _id: "",
-  },
+  cart: [],
+  wishlist: [],
 };
 
 const authReducer = (state, { type, payload }) => {
+  console.log(state);
   switch (type) {
     case "LOGIN":
       localStorage.setItem("userToken", payload.encodedToken);
@@ -32,6 +23,12 @@ const authReducer = (state, { type, payload }) => {
       localStorage.removeItem("userToken");
       localStorage.removeItem("userDetails");
       return { ...state, initialUserState };
+
+    case "UPDATE_CART":
+      return { ...state, cart: payload };
+
+    case "UPDATE_WISHLIST":
+      return { ...state, wishlist: payload };
 
     default:
       return state;
