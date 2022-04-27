@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
-import { useUserProducts } from "../../../context/user-products-context";
 import { useAuth } from "../../../context/auth-context";
 import { useState } from "react";
 
 const TopNav = () => {
-  const { productState } = useUserProducts();
   const [isSideDrawerActive, setIsSideDrawerActive] = useState(false);
-  const { userToken, dispatchUserState } = useAuth();
+  const { userToken, dispatchUserState, userState } = useAuth();
   return (
     <nav className="brand-nav navigation gap-1 box-shadow">
       <div className="flex-row wd-full">
@@ -57,11 +55,11 @@ const TopNav = () => {
             <nav className="drawer-nav-list">
               <Link className="nav-list-item" to="./cart">
                 <i className="fas fa-shopping-cart" />
-                My cart {productState.cartCounter}
+                My cart {userState.cartCounter}
               </Link>
               <Link className="nav-list-item" to="./wishlist">
                 <i className="fas fa-heart" />
-                My Wishlist {productState.wishlist.length}
+                My Wishlist {userState.wishlist.length}
               </Link>
               <Link className="nav-list-item" to="./login">
                 <i className="fa fa-sign-in" aria-hidden="true"></i>
@@ -88,9 +86,9 @@ const TopNav = () => {
         <li className="list-item-inline badge-box">
           <Link className="link" to="./wishlist">
             <i className="fas fa-2x fa-heart" />
-            {productState.wishlist.length > 0 ? (
+            {userState.wishlist.length > 0 ? (
               <span className="badge badge-notification">
-                {productState.wishlist.length}
+                {userState.wishlist.length}
               </span>
             ) : (
               ""
@@ -100,9 +98,9 @@ const TopNav = () => {
         <li className="list-item-inline badge-box">
           <Link className="link" to="./cart">
             <i className="fas fa-2x fa-shopping-cart" />
-            {productState.cart.length > 0 ? (
+            {userState.cart.length > 0 ? (
               <span className="badge badge-notification">
-                {productState.cartCounter}
+                {userState.cartCounter}
               </span>
             ) : (
               ""
