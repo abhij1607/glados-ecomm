@@ -5,6 +5,8 @@ import { useState } from "react";
 const TopNav = () => {
   const [isSideDrawerActive, setIsSideDrawerActive] = useState(false);
   const { userToken, dispatchUserState, userState } = useAuth();
+  const cartCount = userState.cart.reduce((acc, curr) => (acc += curr.qty), 0);
+  const wishlistCount = userState.wishlist.length;
   return (
     <nav className="brand-nav navigation gap-1 box-shadow">
       <div className="flex-row wd-full">
@@ -55,11 +57,11 @@ const TopNav = () => {
             <nav className="drawer-nav-list">
               <Link className="nav-list-item" to="./cart">
                 <i className="fas fa-shopping-cart" />
-                My cart {userState.cartCounter}
+                My cart {cartCount}
               </Link>
               <Link className="nav-list-item" to="./wishlist">
                 <i className="fas fa-heart" />
-                My Wishlist {userState.wishlist.length}
+                My Wishlist {wishlistCount}
               </Link>
               <Link className="nav-list-item" to="./login">
                 <i className="fa fa-sign-in" aria-hidden="true"></i>
@@ -86,10 +88,8 @@ const TopNav = () => {
         <li className="list-item-inline badge-box">
           <Link className="link" to="./wishlist">
             <i className="fas fa-2x fa-heart" />
-            {userState.wishlist.length > 0 ? (
-              <span className="badge badge-notification">
-                {userState.wishlist.length}
-              </span>
+            {wishlistCount > 0 ? (
+              <span className="badge badge-notification">{wishlistCount}</span>
             ) : (
               ""
             )}
@@ -99,9 +99,7 @@ const TopNav = () => {
           <Link className="link" to="./cart">
             <i className="fas fa-2x fa-shopping-cart" />
             {userState.cart.length > 0 ? (
-              <span className="badge badge-notification">
-                {userState.cartCounter}
-              </span>
+              <span className="badge badge-notification">{cartCount}</span>
             ) : (
               ""
             )}
