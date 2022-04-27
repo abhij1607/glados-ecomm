@@ -1,5 +1,5 @@
 import "./login.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
@@ -7,7 +7,6 @@ import { useAuth } from "../../context/auth-context";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [response, setResponse] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const testCredentials = {
@@ -15,7 +14,7 @@ const Login = () => {
     password: "adarshbalika",
   };
 
-  const { userToken, userState, dispatchUserState } = useAuth();
+  const { dispatchUserState } = useAuth();
 
   const loginRequest = async (e) => {
     e.preventDefault();
@@ -24,7 +23,6 @@ const Login = () => {
       const loginResponse = await axios.post("/api/auth/login", data);
       dispatchUserState({ type: "LOGIN", payload: loginResponse.data });
       navigate(location?.state?.from?.pathname || "/", { replace: true });
-      setResponse(loginResponse.data);
     } catch (error) {
       console.log(error);
     }
