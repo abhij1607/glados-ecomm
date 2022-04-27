@@ -1,14 +1,15 @@
-import { ProductCards } from "./cart-components/product-card";
+import { CartProductCards } from "./cart-components/cart-product-card";
 import { BillCard } from "./cart-components/bill-card";
-import { useUserProducts } from "../../context/user-products-context";
+import { useAuth } from "../../context/auth-context";
+
 import "./cart.css";
 
 const Cart = () => {
-  const { productState } = useUserProducts();
+  const { userState } = useAuth();
   return (
     <div className="wrapper wrapper-cart">
-      <ProductCards />
-      {productState.cartCounter > 0 && <BillCard />}
+      <CartProductCards />
+      {userState.cart.length > 0 && <BillCard />}
     </div>
   );
 };
