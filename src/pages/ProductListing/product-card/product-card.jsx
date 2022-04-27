@@ -12,6 +12,7 @@ const ProductCard = ({ product }) => {
   const addToCartHandler = async (product) => {
     if (!userToken) {
       navigate("/login", { state: { from: location }, replace: true });
+      return;
     }
     try {
       const cartResponse = await axios({
@@ -39,6 +40,7 @@ const ProductCard = ({ product }) => {
   const addToWishlistHandler = async (product) => {
     if (!userToken) {
       navigate("/login", { state: { from: location }, replace: true });
+      return;
     }
     try {
       const wishlistResponse = await axios({
