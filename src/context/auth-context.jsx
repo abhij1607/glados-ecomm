@@ -17,7 +17,6 @@ const initialUserState = {
 };
 
 const authReducer = (state, { type, payload }) => {
-  console.log(state);
   switch (type) {
     case "LOGIN":
       localStorage.setItem("userToken", payload.encodedToken);
@@ -76,7 +75,6 @@ const AuthProvider = ({ children }) => {
   const removeFromCart = async (product) => {
     try {
       const cartResponse = await requestRemoveFromCart(userToken, product);
-      console.log(cartResponse);
       if (cartResponse.status === 200) {
         dispatchUserState({
           type: "UPDATE_CART",
@@ -130,7 +128,6 @@ const AuthProvider = ({ children }) => {
         userToken,
         product
       );
-      console.log(cartResponse);
       if (cartResponse.status === 200) {
         dispatchUserState({
           type: "UPDATE_CART",
@@ -148,7 +145,6 @@ const AuthProvider = ({ children }) => {
         userToken,
         product
       );
-      console.log(cartResponse);
       if (cartResponse.status === 200) {
         dispatchUserState({
           type: "UPDATE_CART",
