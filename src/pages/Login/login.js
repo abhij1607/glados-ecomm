@@ -1,31 +1,21 @@
 import "./login.css";
 import { useState } from "react";
-import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
+
+const testCredentials = {
+  email: "adarshbalika@gmail.com",
+  password: "adarshbalika",
+};
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  const location = useLocation();
-  const testCredentials = {
-    email: "adarshbalika@gmail.com",
-    password: "adarshbalika",
-  };
 
-  const { dispatchUserState } = useAuth();
+  const { dispatchUserState, login } = useAuth();
 
-  const loginRequest = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const data = { email, password };
-    try {
-      const loginResponse = await axios.post("/api/auth/login", data);
-      dispatchUserState({ type: "LOGIN", payload: loginResponse.data });
-      navigate(location?.state?.from?.pathname || "/", { replace: true });
-    } catch (error) {
-      console.log(error);
-    }
+    login({ email, password });
   };
 
   return (
@@ -33,7 +23,7 @@ const Login = () => {
       <main className="align-center">
         <div className="box-shadow form-box auto-container align-center">
           <h1 className="h2">Login</h1>
-          <form onSubmit={loginRequest}>
+          <form onSubmit={handleLogin}>
             <div className="input-box">
               <label className="label p-md txt-wt-md" htmlFor="email">
                 Enter your email:

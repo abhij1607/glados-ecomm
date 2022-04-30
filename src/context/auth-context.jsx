@@ -7,6 +7,7 @@ import {
   requestRemoveFromWishlist,
   requestCartProductIncrement,
   requestCartProductDecrement,
+  requestLogin,
 } from "../utils/product-server-request";
 
 const AuthContext = createContext();
@@ -156,6 +157,18 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const login = async ({ email, password }) => {
+    try {
+      const loginResponse = await requestLogin({ email, password });
+      if (loginResponse.status === 200) {
+        dispatchUserState({ type: "LOGIN", payload: loginResponse.data });
+        navigate(location?.state?.from?.pathname || "/", { replace: true });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -168,6 +181,7 @@ const AuthProvider = ({ children }) => {
         removeFromWishlist,
         cartProductIncrement,
         cartProductDecrement,
+        login,
       }}
     >
       {children}

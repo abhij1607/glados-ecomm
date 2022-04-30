@@ -76,6 +76,14 @@ const requestRemoveFromCart = async (userToken, product) => {
   });
 };
 
+const requestLogin = async ({ email, password }) => {
+  return await axios({
+    method: "post",
+    url: "/api/auth/login",
+    data: { email, password },
+  });
+};
+
 export {
   requestAddToCart,
   requestRemoveFromCart,
@@ -83,4 +91,5 @@ export {
   requestRemoveFromWishlist,
   requestCartProductIncrement,
   requestCartProductDecrement,
+  requestLogin,
 };
