@@ -1,104 +1,17 @@
 import { useAuth } from "../../../context/auth-context";
-import axios from "axios";
+
 const CartProductCards = () => {
-  const { dispatchUserState, userState, userToken } = useAuth();
-
-  const handleCartProductIncrement = async (product) => {
-    try {
-      const cartResponse = await axios({
-        method: "post",
-        url: `/api/user/cart/${product._id}`,
-        headers: {
-          authorization: userToken,
-        },
-        data: {
-          action: {
-            type: "increment",
-          },
-        },
-      });
-      console.log(cartResponse);
-      if (cartResponse.status === 200) {
-        dispatchUserState({
-          type: "UPDATE_CART",
-          payload: cartResponse.data.cart,
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleCartProductDecrement = async (product) => {
-    try {
-      const cartResponse = await axios({
-        method: "post",
-        url: `/api/user/cart/${product._id}`,
-        headers: {
-          authorization: userToken,
-        },
-        data: {
-          action: {
-            type: "decrement",
-          },
-        },
-      });
-      console.log(cartResponse);
-      if (cartResponse.status === 200) {
-        dispatchUserState({
-          type: "UPDATE_CART",
-          payload: cartResponse.data.cart,
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleRemoveFromCart = async (product) => {
-    try {
-      const cartResponse = await axios({
-        method: "DELETE",
-        url: `/api/user/cart/${product._id}`,
-        headers: {
-          authorization: userToken,
-        },
-      });
-      console.log(cartResponse);
-      if (cartResponse.status === 200) {
-        dispatchUserState({
-          type: "UPDATE_CART",
-          payload: cartResponse.data.cart,
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const {
+    userState,
+    cartProductIncrement,
+    cartProductDecrement,
+    addToWishlist,
+    removeFromCart,
+  } = useAuth();
 
   const handleMoveToWishlist = async (product) => {
-    handleRemoveFromCart(product);
-    try {
-      const wishlistResponse = await axios({
-        method: "post",
-        url: "/api/user/wishlist",
-        headers: {
-          authorization: userToken,
-        },
-        data: {
-          product,
-        },
-      });
-
-      if (wishlistResponse.status === 201) {
-        dispatchUserState({
-          type: "UPDATE_WISHLIST",
-          payload: wishlistResponse.data.wishlist,
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    removeFromCart(product);
+    addToWishlist(product);
   };
 
   return (
@@ -129,7 +42,7 @@ const CartProductCards = () => {
                         <p>Quantity</p>
                         <div className="flex-row p-lg gap-1">
                           <button
-                            onClick={() => handleCartProductDecrement(product)}
+                            onClick={() => cartProductDecrement(product)}
                             disabled={product.qty < 2 ? true : false}
                           >
                             <i className="fas fa-sm fa-minus" />
@@ -141,9 +54,7 @@ const CartProductCards = () => {
                             id="quantity"
                             value={product.qty}
                           />
-                          <button
-                            onClick={() => handleCartProductIncrement(product)}
-                          >
+                          <button onClick={() => cartProductIncrement(product)}>
                             <i className="fas fa-sm fa-plus" />
                           </button>
                         </div>
@@ -159,7 +70,7 @@ const CartProductCards = () => {
                       </button>
                       <button
                         className="btn btn-secondary btn-lg"
-                        onClick={() => handleRemoveFromCart(product)}
+                        onClick={() => removeFromCart(product)}
                       >
                         <i className="fas fa-shopping-cart" />
                         Remove from cart

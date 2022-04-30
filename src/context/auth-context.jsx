@@ -1,4 +1,13 @@
 import { createContext, useContext, useReducer } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  requestAddToCart,
+  requestRemoveFromCart,
+  requestAddToWishlist,
+  requestRemoveFromWishlist,
+  requestCartProductIncrement,
+  requestCartProductDecrement,
+} from "../utils/product-server-request";
 
 const AuthContext = createContext();
 
@@ -41,8 +50,130 @@ const AuthProvider = ({ children }) => {
     authReducer,
     initialUserState
   );
+
+  const navigate = useNavigate();
+  let location = useLocation();
+
+  const addToCart = async (product) => {
+    if (!userToken) {
+      navigate("/login", { state: { from: location }, replace: true });
+      return;
+    }
+    try {
+      const cartResponse = await requestAddToCart(userToken, product);
+
+      if (cartResponse.status === 201) {
+        dispatchUserState({
+          type: "UPDATE_CART",
+          payload: cartResponse.data.cart,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const removeFromCart = async (product) => {
+    try {
+      const cartResponse = await requestRemoveFromCart(userToken, product);
+      console.log(cartResponse);
+      if (cartResponse.status === 200) {
+        dispatchUserState({
+          type: "UPDATE_CART",
+          payload: cartResponse.data.cart,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const addToWishlist = async (product) => {
+    if (!userToken) {
+      navigate("/login", { state: { from: location }, replace: true });
+      return;
+    }
+    try {
+      const wishlistResponse = await requestAddToWishlist(userToken, product);
+
+      if (wishlistResponse.status === 201) {
+        dispatchUserState({
+          type: "UPDATE_WISHLIST",
+          payload: wishlistResponse.data.wishlist,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const removeFromWishlist = async (product) => {
+    try {
+      const removeWishlistResponse = await requestRemoveFromWishlist(
+        userToken,
+        product
+      );
+      if (removeWishlistResponse.status === 200) {
+        dispatchUserState({
+          type: "UPDATE_WISHLIST",
+          payload: removeWishlistResponse.data.wishlist,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const cartProductIncrement = async (product) => {
+    try {
+      const cartResponse = await requestCartProductIncrement(
+        userToken,
+        product
+      );
+      console.log(cartResponse);
+      if (cartResponse.status === 200) {
+        dispatchUserState({
+          type: "UPDATE_CART",
+          payload: cartResponse.data.cart,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const cartProductDecrement = async (product) => {
+    try {
+      const cartResponse = await requestCartProductDecrement(
+        userToken,
+        product
+      );
+      console.log(cartResponse);
+      if (cartResponse.status === 200) {
+        dispatchUserState({
+          type: "UPDATE_CART",
+          payload: cartResponse.data.cart,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ userToken, userState, dispatchUserState }}>
+    <AuthContext.Provider
+      value={{
+        userToken,
+        userState,
+        dispatchUserState,
+        addToCart,
+        removeFromCart,
+        addToWishlist,
+        removeFromWishlist,
+        cartProductIncrement,
+        cartProductDecrement,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -4,86 +4,93 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
-  const { userToken, dispatchUserState, userState } = useAuth();
+  const {
+    // userToken,
+    // dispatchUserState,
+    userState,
+    addToCart,
+    addToWishlist,
+    removeFromWishlist,
+  } = useAuth();
 
-  const navigate = useNavigate();
-  let location = useLocation();
+  // const navigate = useNavigate();
+  // let location = useLocation();
 
-  const addToCartHandler = async (product) => {
-    if (!userToken) {
-      navigate("/login", { state: { from: location }, replace: true });
-      return;
-    }
-    try {
-      const cartResponse = await axios({
-        method: "post",
-        url: "/api/user/cart",
-        headers: {
-          authorization: userToken,
-        },
-        data: {
-          product,
-        },
-      });
+  // const addToCartHandler = async (product) => {
+  //   if (!userToken) {
+  //     navigate("/login", { state: { from: location }, replace: true });
+  //     return;
+  //   }
+  //   try {
+  //     const cartResponse = await axios({
+  //       method: "post",
+  //       url: "/api/user/cart",
+  //       headers: {
+  //         authorization: userToken,
+  //       },
+  //       data: {
+  //         product,
+  //       },
+  //     });
 
-      if (cartResponse.status === 201) {
-        dispatchUserState({
-          type: "UPDATE_CART",
-          payload: cartResponse.data.cart,
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  //     if (cartResponse.status === 201) {
+  //       dispatchUserState({
+  //         type: "UPDATE_CART",
+  //         payload: cartResponse.data.cart,
+  //       });
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
-  const addToWishlistHandler = async (product) => {
-    if (!userToken) {
-      navigate("/login", { state: { from: location }, replace: true });
-      return;
-    }
-    try {
-      const wishlistResponse = await axios({
-        method: "post",
-        url: "/api/user/wishlist",
-        headers: {
-          authorization: userToken,
-        },
-        data: {
-          product,
-        },
-      });
+  // const addToWishlistHandler = async (product) => {
+  //   if (!userToken) {
+  //     navigate("/login", { state: { from: location }, replace: true });
+  //     return;
+  //   }
+  //   try {
+  //     const wishlistResponse = await axios({
+  //       method: "post",
+  //       url: "/api/user/wishlist",
+  //       headers: {
+  //         authorization: userToken,
+  //       },
+  //       data: {
+  //         product,
+  //       },
+  //     });
 
-      if (wishlistResponse.status === 201) {
-        dispatchUserState({
-          type: "UPDATE_WISHLIST",
-          payload: wishlistResponse.data.wishlist,
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  //     if (wishlistResponse.status === 201) {
+  //       dispatchUserState({
+  //         type: "UPDATE_WISHLIST",
+  //         payload: wishlistResponse.data.wishlist,
+  //       });
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
-  const handleRemoveFromWishlist = async (product) => {
-    try {
-      const removeWishlistResponse = await axios({
-        method: "DELETE",
-        url: `/api/user/wishlist/${product._id}`,
-        headers: {
-          authorization: userToken,
-        },
-      });
-      if (removeWishlistResponse.status === 200) {
-        dispatchUserState({
-          type: "UPDATE_WISHLIST",
-          payload: removeWishlistResponse.data.wishlist,
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const removeFromWishlist = async (product) => {
+  //   try {
+  //     const removeWishlistResponse = await axios({
+  //       method: "DELETE",
+  //       url: `/api/user/wishlist/${product._id}`,
+  //       headers: {
+  //         authorization: userToken,
+  //       },
+  //     });
+  //     if (removeWishlistResponse.status === 200) {
+  //       dispatchUserState({
+  //         type: "UPDATE_WISHLIST",
+  //         payload: removeWishlistResponse.data.wishlist,
+  //       });
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   return (
     <div className="card-container">
@@ -108,7 +115,7 @@ const ProductCard = ({ product }) => {
           <button className="btn btn-primary btn-lg">
             <i
               className="fas fa-shopping-cart"
-              onClick={() => addToCartHandler(product)}
+              onClick={() => addToCart(product)}
             >
               Add to Cart
             </i>
@@ -118,14 +125,14 @@ const ProductCard = ({ product }) => {
         {userState.wishlist.some((item) => item._id === product._id) ? (
           <button
             className="wishlist-icon fill"
-            onClick={() => handleRemoveFromWishlist(product)}
+            onClick={() => removeFromWishlist(product)}
           >
             <i className="fa fa-2x fa-heart" />
           </button>
         ) : (
           <button
             className="wishlist-icon"
-            onClick={() => addToWishlistHandler(product)}
+            onClick={() => addToWishlist(product)}
           >
             <i className="fa fa-2x fa-heart" />
           </button>
