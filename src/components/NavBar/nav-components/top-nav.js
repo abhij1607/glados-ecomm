@@ -5,8 +5,11 @@ import { useState } from "react";
 const TopNav = () => {
   const [isSideDrawerActive, setIsSideDrawerActive] = useState(false);
   const { userToken, dispatchUserState, userState } = useAuth();
-  const cartCount = userState.cart.reduce((acc, curr) => (acc += curr.qty), 0);
-  const wishlistCount = userState.wishlist.length;
+  const cartCount = userState?.userDetails?.cart.reduce(
+    (acc, curr) => (acc += curr.qty),
+    0
+  );
+  const wishlistCount = userState?.userDetails?.wishlist?.length;
   return (
     <nav className="brand-nav navigation gap-1 box-shadow">
       <div className="flex-row wd-full">
@@ -98,7 +101,7 @@ const TopNav = () => {
         <li className="list-item-inline badge-box">
           <Link className="link" to="./cart">
             <i className="fas fa-2x fa-shopping-cart" />
-            {userState.cart.length > 0 ? (
+            {userState?.userDetails?.cart.length > 0 ? (
               <span className="badge badge-notification">{cartCount}</span>
             ) : (
               ""

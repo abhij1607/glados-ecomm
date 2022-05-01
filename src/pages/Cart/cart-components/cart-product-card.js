@@ -18,7 +18,7 @@ const CartProductCards = () => {
     <main>
       <section className="auto-container">
         <ul className="list-structure flex-column">
-          {userState.cart.map((product) => {
+          {userState.userDetails.cart.map((product) => {
             return (
               <li key={product._id} className="list-non-bullet">
                 <div className="cart card-container flex-row">

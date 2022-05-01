@@ -54,12 +54,12 @@ const Wishlist = () => {
         <h1 className="h2">
           My Wishlist
           <span className="p-lg txt-wt-light">
-            ` {userState.wishlist.length} Items`
+            ` {userState?.userDetails?.wishlist?.length} Items`
           </span>
         </h1>
         <section className="card-categories">
           <ul className="list-structure">
-            {userState.wishlist.map((product) => {
+            {userState?.userDetails?.wishlist?.map((product) => {
               return (
                 <li key={product._id} className="list-non-bullet">
                   <div className="card-container">

@@ -19,7 +19,9 @@ const ProductCard = ({ product }) => {
       </div>
       <div className="card-action">
         <span className="card-cost">{product.price}₹</span>
-        {userState.cart.some((item) => item._id === product._id) ? (
+        {userState?.userDetails?.cart?.some(
+          (item) => item._id === product._id
+        ) ? (
           <Link className="btn btn-primary btn-lg" to="/cart">
             Go to Cart
           </Link>
@@ -34,7 +36,9 @@ const ProductCard = ({ product }) => {
           </button>
         )}
 
-        {userState.wishlist.some((item) => item._id === product._id) ? (
+        {userState?.userDetails?.wishlist?.some(
+          (item) => item._id === product._id
+        ) ? (
           <button
             className="wishlist-icon fill"
             onClick={() => removeFromWishlist(product)}

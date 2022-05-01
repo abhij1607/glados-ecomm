@@ -13,31 +13,41 @@ import {
 const AuthContext = createContext();
 
 const initialUserState = {
-  cart: [],
-  wishlist: [],
+  userToken: localStorage.getItem("userToken") || null,
+  userDetails: JSON.parse(localStorage.getItem("userDetails")) || {
+    cart: [],
+    wishlist: [],
+  },
 };
 
 const authReducer = (state, { type, payload }) => {
+  console.log(state);
   switch (type) {
     case "LOGIN":
       localStorage.setItem("userToken", payload.encodedToken);
       localStorage.setItem("userDetails", JSON.stringify(payload.foundUser));
       return {
         ...state,
-        userToken: payload.encodedToken,
+        userToken: localStorage.getItem("userToken"),
         userDetails: payload.foundUser,
       };
 
     case "LOGOUT":
       localStorage.removeItem("userToken");
       localStorage.removeItem("userDetails");
-      return { ...state, initialUserState };
+      return initialUserState;
 
     case "UPDATE_CART":
-      return { ...state, cart: payload };
+      return {
+        ...state,
+        userDetails: { ...state.userDetails, cart: payload },
+      };
 
     case "UPDATE_WISHLIST":
-      return { ...state, wishlist: payload };
+      return {
+        ...state,
+        userDetails: { ...state.userDetails, wishlist: payload },
+      };
 
     default:
       return state;
@@ -60,12 +70,12 @@ const AuthProvider = ({ children }) => {
       return;
     }
     try {
-      const cartResponse = await requestAddToCart(userToken, product);
+      const response = await requestAddToCart(userToken, product);
 
-      if (cartResponse.status === 201) {
+      if (response.status === 200 || response.status === 201) {
         dispatchUserState({
           type: "UPDATE_CART",
-          payload: cartResponse.data.cart,
+          payload: response.data.cart,
         });
       }
     } catch (err) {
@@ -75,11 +85,11 @@ const AuthProvider = ({ children }) => {
 
   const removeFromCart = async (product) => {
     try {
-      const cartResponse = await requestRemoveFromCart(userToken, product);
-      if (cartResponse.status === 200) {
+      const response = await requestRemoveFromCart(userToken, product);
+      if (response.status === 200 || response.status === 201) {
         dispatchUserState({
           type: "UPDATE_CART",
-          payload: cartResponse.data.cart,
+          payload: response.data.cart,
         });
       }
     } catch (err) {
@@ -93,12 +103,12 @@ const AuthProvider = ({ children }) => {
       return;
     }
     try {
-      const wishlistResponse = await requestAddToWishlist(userToken, product);
+      const response = await requestAddToWishlist(userToken, product);
 
-      if (wishlistResponse.status === 201) {
+      if (response.status === 200 || response.status === 201) {
         dispatchUserState({
           type: "UPDATE_WISHLIST",
-          payload: wishlistResponse.data.wishlist,
+          payload: response.data.wishlist,
         });
       }
     } catch (err) {
@@ -108,14 +118,11 @@ const AuthProvider = ({ children }) => {
 
   const removeFromWishlist = async (product) => {
     try {
-      const removeWishlistResponse = await requestRemoveFromWishlist(
-        userToken,
-        product
-      );
-      if (removeWishlistResponse.status === 200) {
+      const response = await requestRemoveFromWishlist(userToken, product);
+      if (response.status === 200 || response.status === 201) {
         dispatchUserState({
           type: "UPDATE_WISHLIST",
-          payload: removeWishlistResponse.data.wishlist,
+          payload: response.data.wishlist,
         });
       }
     } catch (err) {
@@ -125,14 +132,11 @@ const AuthProvider = ({ children }) => {
 
   const cartProductIncrement = async (product) => {
     try {
-      const cartResponse = await requestCartProductIncrement(
-        userToken,
-        product
-      );
-      if (cartResponse.status === 200) {
+      const response = await requestCartProductIncrement(userToken, product);
+      if (response.status === 200 || response.status === 201) {
         dispatchUserState({
           type: "UPDATE_CART",
-          payload: cartResponse.data.cart,
+          payload: response.data.cart,
         });
       }
     } catch (err) {
@@ -142,14 +146,11 @@ const AuthProvider = ({ children }) => {
 
   const cartProductDecrement = async (product) => {
     try {
-      const cartResponse = await requestCartProductDecrement(
-        userToken,
-        product
-      );
-      if (cartResponse.status === 200) {
+      const response = await requestCartProductDecrement(userToken, product);
+      if (response.status === 200 || response.status === 201) {
         dispatchUserState({
           type: "UPDATE_CART",
-          payload: cartResponse.data.cart,
+          payload: response.data.cart,
         });
       }
     } catch (err) {
@@ -159,9 +160,9 @@ const AuthProvider = ({ children }) => {
 
   const login = async ({ email, password }) => {
     try {
-      const loginResponse = await requestLogin({ email, password });
-      if (loginResponse.status === 200) {
-        dispatchUserState({ type: "LOGIN", payload: loginResponse.data });
+      const response = await requestLogin({ email, password });
+      if (response.status === 200 || response.status === 201) {
+        dispatchUserState({ type: "LOGIN", payload: response.data });
         navigate(location?.state?.from?.pathname || "/", { replace: true });
       }
     } catch (error) {
