@@ -16,13 +16,13 @@ const BillCard = () => {
     }, initialBill);
   };
 
-  const bill = billCalculator(userState.cart);
+  const bill = billCalculator(userState.userDetails.cart);
   return (
     <aside className="bill-container box-shadow auto-container">
       <div className="bill-title">
         <h3>Price Details</h3>
       </div>
-      {userState.cart.map((product) => {
+      {userState?.userDetails?.cart.map((product) => {
         return (
           <div key={product._id} className="h4 bill-price-container flex-row">
             <span className="bill-price-title">

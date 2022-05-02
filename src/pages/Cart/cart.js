@@ -9,7 +9,7 @@ const Cart = () => {
   return (
     <div className="wrapper wrapper-cart">
       <CartProductCards />
-      {userState.cart.length > 0 && <BillCard />}
+      {userState?.userDetails?.cart?.length > 0 && <BillCard />}
     </div>
   );
 };
