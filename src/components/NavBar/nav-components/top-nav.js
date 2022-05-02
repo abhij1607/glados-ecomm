@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
-import { useUserProducts } from "../../../context/user-products-context";
+import { useAuth } from "../../../context/auth-context";
 import { useState } from "react";
 
 const TopNav = () => {
-  const { productState } = useUserProducts();
   const [isSideDrawerActive, setIsSideDrawerActive] = useState(false);
+  const { userToken, dispatchUserState, userState } = useAuth();
+  const cartCount = userState?.userDetails?.cart.reduce(
+    (acc, curr) => (acc += curr.qty),
+    0
+  );
+  const wishlistCount = userState?.userDetails?.wishlist?.length;
   return (
     <nav className="brand-nav navigation gap-1 box-shadow">
       <div className="flex-row wd-full">
@@ -55,11 +60,11 @@ const TopNav = () => {
             <nav className="drawer-nav-list">
               <Link className="nav-list-item" to="./cart">
                 <i className="fas fa-shopping-cart" />
-                My cart {productState.cartCounter}
+                My cart {cartCount}
               </Link>
               <Link className="nav-list-item" to="./wishlist">
                 <i className="fas fa-heart" />
-                My Wishlist {productState.wishlist.length}
+                My Wishlist {wishlistCount}
               </Link>
               <Link className="nav-list-item" to="./login">
                 <i className="fa fa-sign-in" aria-hidden="true"></i>
@@ -86,10 +91,8 @@ const TopNav = () => {
         <li className="list-item-inline badge-box">
           <Link className="link" to="./wishlist">
             <i className="fas fa-2x fa-heart" />
-            {productState.wishlist.length > 0 ? (
-              <span className="badge badge-notification">
-                {productState.wishlist.length}
-              </span>
+            {wishlistCount > 0 ? (
+              <span className="badge badge-notification">{wishlistCount}</span>
             ) : (
               ""
             )}
@@ -98,19 +101,28 @@ const TopNav = () => {
         <li className="list-item-inline badge-box">
           <Link className="link" to="./cart">
             <i className="fas fa-2x fa-shopping-cart" />
-            {productState.cart.length > 0 ? (
-              <span className="badge badge-notification">
-                {productState.cartCounter}
-              </span>
+            {userState?.userDetails?.cart.length > 0 ? (
+              <span className="badge badge-notification">{cartCount}</span>
             ) : (
               ""
             )}
           </Link>
         </li>
         <li className="list-item-inline">
-          <Link className="btn btn-primary-outline" to="./login">
-            Login
-          </Link>
+          {userToken ? (
+            <button
+              className="btn btn-primary-outline pd-y-sm"
+              onClick={() => {
+                dispatchUserState({ type: "LOGOUT" });
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            <Link className="btn btn-primary-outline" to="./login">
+              Login
+            </Link>
+          )}
         </li>
       </ul>
     </nav>

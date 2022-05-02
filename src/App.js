@@ -10,6 +10,7 @@ import {
 } from "./pages";
 import "./styles/index.css";
 import { Routes, Route } from "react-router-dom";
+import { RequiresAuth } from "./RequireAuth/RequiresAuth";
 
 function App() {
   return (
@@ -18,10 +19,25 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductListing />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<PageNotFound />} />
+
+        <Route
+          path="/wishlist"
+          element={
+            <RequiresAuth>
+              <Wishlist />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <RequiresAuth>
+              <Cart />
+            </RequiresAuth>
+          }
+        />
       </Routes>
       <Footer />
     </>

@@ -1,7 +1,7 @@
-import { useUserProducts } from "../../../context/user-products-context";
+import { useAuth } from "../../../context/auth-context";
 
 const BillCard = () => {
-  const { productState } = useUserProducts();
+  const { userState } = useAuth();
 
   const initialBill = {
     totalProductPrice: 0,
@@ -10,26 +10,25 @@ const BillCard = () => {
 
   const billCalculator = (products) => {
     return products.reduce((accumulator, product) => {
-      accumulator.totalProductPrice += product.price * product.count;
-      accumulator.discount +=
-        (product.maxPrice - product.price) * product.count;
+      accumulator.totalProductPrice += product.price * product.qty;
+      accumulator.discount += (product.maxPrice - product.price) * product.qty;
       return accumulator;
     }, initialBill);
   };
 
-  const bill = billCalculator(productState.cart);
+  const bill = billCalculator(userState.userDetails.cart);
   return (
     <aside className="bill-container box-shadow auto-container">
       <div className="bill-title">
         <h3>Price Details</h3>
       </div>
-      {productState.cart.map((product) => {
+      {userState?.userDetails?.cart.map((product) => {
         return (
           <div key={product._id} className="h4 bill-price-container flex-row">
             <span className="bill-price-title">
-              {product.title}({product.count} items)
+              {product.title}({product.qty} items)
             </span>
-            <span className="bill-price">{product.price * product.count}₹</span>
+            <span className="bill-price">{product.price * product.qty}₹</span>
           </div>
         );
       })}
@@ -43,7 +42,7 @@ const BillCard = () => {
         <span className="bill-price">Free</span>
       </div>
       <div className="bill-price-container bill-price-final flex-row">
-        <h3 className="bill-price">Price({productState.cartCounter} items)</h3>
+        <h3 className="bill-price">Price({userState.cartCounter} items)</h3>
         <h3 className="bill-price">{bill.totalProductPrice}₹</h3>
       </div>
       <div className="bill-price-container">

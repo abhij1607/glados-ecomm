@@ -1,21 +1,21 @@
 import "./login.css";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
+import { useAuth } from "../../context/auth-context";
+
+const testCredentials = {
+  email: "adarshbalika@gmail.com",
+  password: "adarshbalika",
+};
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [response, setResponse] = useState("");
 
-  const loginRequest = async (e) => {
+  const { dispatchUserState, login } = useAuth();
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const data = { email, password };
-    try {
-      const loginResponse = await axios.post("/api/auth/login", data);
-      setResponse(loginResponse.data);
-    } catch (error) {
-      console.log(error);
-    }
+    login({ email, password });
   };
 
   return (
@@ -23,7 +23,7 @@ const Login = () => {
       <main className="align-center">
         <div className="box-shadow form-box auto-container align-center">
           <h1 className="h2">Login</h1>
-          <form onSubmit={loginRequest}>
+          <form onSubmit={handleLogin}>
             <div className="input-box">
               <label className="label p-md txt-wt-md" htmlFor="email">
                 Enter your email:
@@ -67,6 +67,17 @@ const Login = () => {
               value="Submit"
             >
               Submit
+            </button>
+            <button
+              className="btn btn-fill btn-primary btn-lg mg-y-base"
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                setEmail(testCredentials.email);
+                setPassword(testCredentials.password);
+              }}
+            >
+              Fill in test credentials
             </button>
           </form>
         </div>

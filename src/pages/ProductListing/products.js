@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useData } from "../../context/data-context";
-import { useUserProducts } from "../../context/user-products-context";
 import { useEffect } from "react";
 import {
   sortedData,
@@ -9,6 +8,7 @@ import {
   filterCategories,
   filterGenres,
 } from "../../utils/filter-util";
+import { ProductCard } from "./product-card/product-card";
 
 const Products = () => {
   const { dataState, dataDispatch } = useData();
@@ -39,7 +39,6 @@ const Products = () => {
     filterGenres
   )(dataState, dataState.products);
 
-  const { productState, productDispatch } = useUserProducts();
   return (
     <main className="main">
       <section className="card-categories auto-container">
@@ -47,66 +46,7 @@ const Products = () => {
           {finalProducts.map((product) => {
             return (
               <li key={product._id} className="list-non-bullet">
-                <div className="card-container">
-                  <img
-                    className="card-img-top"
-                    src={product.image}
-                    alt="card-img"
-                  />
-                  <div className="card-info">
-                    <h3 className="card-title">{product.title}</h3>
-                    <div className="flex-row">
-                      <span>{product.genre}</span>
-                      <span className="align-right product-rating pd-x-base">
-                        <i className="fa fa-star" aria-hidden="true"></i>
-                        {product.ratings}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="card-action">
-                    <span className="card-cost">{product.price}₹</span>
-                    <button className="btn btn-primary btn-lg">
-                      <i
-                        className="fas fa-shopping-cart"
-                        onClick={() =>
-                          productDispatch({
-                            type: "ADD_TO_CART",
-                            payload: product,
-                          })
-                        }
-                      >
-                        Add to Cart
-                      </i>
-                    </button>
-                    {productState.wishlist.some(
-                      (item) => item._id === product._id
-                    ) ? (
-                      <button
-                        className="wishlist-icon fill"
-                        onClick={() =>
-                          productDispatch({
-                            type: "REMOVE_FROM_WISHLIST",
-                            payload: product,
-                          })
-                        }
-                      >
-                        <i className="fa fa-2x fa-heart" />
-                      </button>
-                    ) : (
-                      <button
-                        className="wishlist-icon"
-                        onClick={() =>
-                          productDispatch({
-                            type: "ADD_TO_WISHLIST",
-                            payload: product,
-                          })
-                        }
-                      >
-                        <i className="fa fa-2x fa-heart" />
-                      </button>
-                    )}
-                  </div>
-                </div>
+                <ProductCard product={product} />
               </li>
             );
           })}
