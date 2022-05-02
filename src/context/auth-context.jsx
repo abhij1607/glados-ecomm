@@ -13,7 +13,6 @@ import {
 const AuthContext = createContext();
 
 const initialUserState = {
-  userToken: localStorage.getItem("userToken") || null,
   userDetails: JSON.parse(localStorage.getItem("userDetails")) || {
     cart: [],
     wishlist: [],
@@ -21,7 +20,6 @@ const initialUserState = {
 };
 
 const authReducer = (state, { type, payload }) => {
-  console.log(state);
   switch (type) {
     case "LOGIN":
       localStorage.setItem("userToken", payload.encodedToken);
@@ -35,7 +33,7 @@ const authReducer = (state, { type, payload }) => {
     case "LOGOUT":
       localStorage.removeItem("userToken");
       localStorage.removeItem("userDetails");
-      return initialUserState;
+      return { ...initialUserState };
 
     case "UPDATE_CART":
       return {
