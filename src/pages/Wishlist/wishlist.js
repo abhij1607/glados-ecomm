@@ -1,20 +1,65 @@
 import "./wishlist.css";
-import { useUserProducts } from "../../context/user-products-context";
+import axios from "axios";
+import { useAuth } from "../../context/auth-context";
 
 const Wishlist = () => {
-  const { productState, productDispatch } = useUserProducts();
+  const { userState, dispatchUserState, userToken } = useAuth();
+
+  const addToCartHandler = async (product) => {
+    try {
+      const cartResponse = await axios({
+        method: "post",
+        url: "/api/user/cart",
+        headers: {
+          authorization: userToken,
+        },
+        data: {
+          product,
+        },
+      });
+
+      if (cartResponse.status === 201) {
+        dispatchUserState({
+          type: "UPDATE_CART",
+          payload: cartResponse.data.cart,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleRemoveFromWishlist = async (product) => {
+    try {
+      const removeWishlistResponse = await axios({
+        method: "DELETE",
+        url: `/api/user/wishlist/${product._id}`,
+        headers: {
+          authorization: userToken,
+        },
+      });
+      if (removeWishlistResponse.status === 200) {
+        dispatchUserState({
+          type: "UPDATE_WISHLIST",
+          payload: removeWishlistResponse.data.wishlist,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="wrapper">
       <main className="main-pane auto-container">
         <h1 className="h2">
           My Wishlist
           <span className="p-lg txt-wt-light">
-            ` {productState.wishlist.length} Items`
+            ` {userState?.userDetails?.wishlist?.length} Items`
           </span>
         </h1>
         <section className="card-categories">
           <ul className="list-structure">
-            {productState.wishlist.map((product) => {
+            {userState?.userDetails?.wishlist?.map((product) => {
               return (
                 <li key={product._id} className="list-non-bullet">
                   <div className="card-container">
@@ -31,24 +76,14 @@ const Wishlist = () => {
                       <button className="btn btn-primary btn-lg">
                         <i
                           className="fas fa-shopping-cart"
-                          onClick={() =>
-                            productDispatch({
-                              type: "ADD_TO_CART",
-                              payload: product,
-                            })
-                          }
+                          onClick={() => addToCartHandler(product)}
                         >
                           Add to Cart
                         </i>
                       </button>
                       <button
                         className="wishlist-icon fill"
-                        onClick={() => {
-                          productDispatch({
-                            type: "REMOVE_FROM_WISHLIST",
-                            payload: product,
-                          });
-                        }}
+                        onClick={() => handleRemoveFromWishlist(product)}
                       >
                         <i className="fa fa-2x fa-heart" />
                       </button>

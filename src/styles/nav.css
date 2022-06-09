@@ -9,9 +9,6 @@
   align-items: center;
   font-size: var(--size-16);
 }
-.navigation {
-  display: flex;
-}
 .top-nav .navigation {
   align-items: center;
   width: 100%;
@@ -20,8 +17,6 @@
 
 .navigation .nav-brand {
   font-size: var(--size-24);
-  color: var(--primary-color);
-  padding: 0 var(--size-32);
 }
 .navigation .link {
   color: var(--sec-text);
@@ -35,6 +30,111 @@
   right: 15%;
   top: -5px;
   background-color: var(--info);
+}
+
+/*new*/
+.top-nav .brand-nav {
+  background-color: var(--primary-color);
+  color: var(--txt-clr-secondary);
+  width: 100%;
+}
+.logo-brand {
+  font-size: var(--size-24);
+  color: var(--txt-clr-secondary);
+}
+.menu-icon {
+  display: none;
+}
+.bar1,
+.bar2,
+.bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: var(--txt-clr-secondary);
+  margin: 6px 0;
+  transition: 0.4s;
+}
+.search-div {
+  position: relative;
+}
+.brand-nav.navigation .input-search {
+  height: auto;
+  font-size: var(--size-md);
+  padding-left: var(--size-xl);
+}
+.btn.btn-search {
+  position: absolute;
+  left: 6px;
+  top: 3px;
+  background-color: var(--txt-clr-secondary);
+  color: var(--primary-color);
+  padding: unset;
+}
+
+/*Toggle menu*/
+.sidebar-nav {
+  min-width: 200px;
+  height: 100%;
+  border: solid 1px;
+  color: rgba(0, 0, 0, 0.84);
+}
+.drawer-nav-list {
+  display: flex;
+  flex-direction: column;
+}
+.nav-divider {
+  width: 100%;
+}
+.drawer-subtitle {
+  color: rgba(0, 0, 0, 0.6);
+}
+.nav-list-item {
+  padding: 1rem;
+}
+.nav-list-item i {
+  padding-right: 10px;
+}
+
+/*modal-drawer*/
+.modal-wrapper {
+  display: none;
+}
+.modal-wrapper.fade {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+.modal-wrapper.show {
+  display: block;
+}
+.header button {
+  padding-right: 1rem;
+}
+.modal-nav {
+  position: fixed;
+  z-index: 6;
+  background-color: #fff;
+  display: none;
+  right: 0;
+  top: 0;
+}
+.drawer-header {
+  background-color: var(--primary-color);
+  color: var(--txt-clr-secondary);
+}
+.modal-nav.active {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
 }
 
 /* footer */
