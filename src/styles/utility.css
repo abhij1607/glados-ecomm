@@ -63,6 +63,12 @@
 .align-center {
   margin: 0 auto;
 }
+.align-base {
+  align-items: baseline;
+}
+.text-center {
+  text-align: center;
+}
 /*container*/
 .auto-container {
   padding: var(--size-32);
