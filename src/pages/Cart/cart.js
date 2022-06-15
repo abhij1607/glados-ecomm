@@ -7,10 +7,13 @@ import "./cart.css";
 const Cart = () => {
   const { userState } = useAuth();
   return (
-    <div className="wrapper wrapper-cart">
-      <CartProductCards />
-      {userState?.userDetails?.cart?.length > 0 && <BillCard />}
-    </div>
+    <>
+      <h1 className="text-center">Cart</h1>
+      <div className="wrapper wrapper-cart">
+        <CartProductCards />
+        {userState?.userDetails?.cart?.length > 0 && <BillCard />}
+      </div>
+    </>
   );
 };
 
