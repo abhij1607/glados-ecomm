@@ -2,19 +2,24 @@ import { CartProductCards } from "./cart-components/cart-product-card";
 import { BillCard } from "./cart-components/bill-card";
 import { useAuth } from "../../context/auth-context";
 
-import "./cart.css";
+import "./checkout.css";
+import { AddressBook } from "../../components/AddressBook/address-book";
 
-const Cart = () => {
+const Checkout = () => {
   const { userState } = useAuth();
   return (
     <>
-      <h1 className="text-center">Cart</h1>
+      <h1 className="text-center">Checkout</h1>
       <div className="wrapper wrapper-cart">
-        <CartProductCards />
+        <div className="auto-container">
+          <AddressBook />
+          <CartProductCards />
+        </div>
+
         {userState?.userDetails?.cart?.length > 0 && <BillCard />}
       </div>
     </>
   );
 };
 
-export { Cart };
+export { Checkout };

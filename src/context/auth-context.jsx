@@ -16,6 +16,8 @@ const initialUserState = {
   userDetails: JSON.parse(localStorage.getItem("userDetails")) || {
     cart: [],
     wishlist: [],
+    addressList: [],
+    selectedAddress: {},
   },
 };
 
@@ -45,6 +47,18 @@ const authReducer = (state, { type, payload }) => {
       return {
         ...state,
         userDetails: { ...state.userDetails, wishlist: payload },
+      };
+
+    case "UPDATE_SELECTED_ADDRESS":
+      return {
+        ...state,
+        userDetails: { ...state.userDetails, selectedAddress: payload },
+      };
+
+    case "UPDATE_ADDRESS_LIST":
+      return {
+        ...state,
+        userDetails: { ...state.userDetails, addressList: payload },
       };
 
     default:

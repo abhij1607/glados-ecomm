@@ -7,6 +7,7 @@ import {
   Login,
   Cart,
   PageNotFound,
+  Checkout,
 } from "./pages";
 import "./styles/index.css";
 import { Routes, Route } from "react-router-dom";
@@ -35,6 +36,14 @@ function App() {
           element={
             <RequiresAuth>
               <Cart />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <RequiresAuth>
+              <Checkout />
             </RequiresAuth>
           }
         />
