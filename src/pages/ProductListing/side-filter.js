@@ -59,6 +59,7 @@ const Filter = () => {
         {dataState.genres.map((category) => {
           return (
             <label
+              key={category._id}
               className="p-lg"
               htmlFor={`filter-genre-${category.categoryName}`}
             >
