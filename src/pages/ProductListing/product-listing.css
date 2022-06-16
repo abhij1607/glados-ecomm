@@ -47,4 +47,7 @@
   .filter-container {
     display: none;
   }
+  .card-categories.auto-container {
+    padding: var(--size-16);
+  }
 }

@@ -1,6 +1,9 @@
 .card-categories {
   max-width: 120rem;
 }
+section.cart-pdt {
+  padding: var(--size-32);
+}
 .list-non-bullet .cart.card-container {
   width: 56rem;
   border: var(--size-16);
@@ -20,8 +23,11 @@
   width: 32rem;
 }
 
-@media (max-width: 768px) {
-  .cart.card-container {
+@media (max-width: 767px) {
+  section.cart-pdt {
+    padding: unset;
+  }
+  .list-non-bullet .cart.card-container {
     width: 100%;
     flex-direction: column;
   }

@@ -21,7 +21,7 @@ const CartProductCards = () => {
 
   return (
     <main>
-      <section className="auto-container">
+      <section className="cart-pdt">
         <ul className="list-structure flex-column">
           {userState?.userDetails?.cart?.map((product) => {
             return (
