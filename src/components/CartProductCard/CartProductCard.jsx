@@ -11,7 +11,11 @@ const CartProductCards = () => {
 
   const handleMoveToWishlist = async (product) => {
     removeFromCart(product);
-    addToWishlist(product);
+    if (
+      !userState.userDetails.wishlist.some((item) => item._id === product._id)
+    ) {
+      addToWishlist(product);
+    }
   };
 
   return (
