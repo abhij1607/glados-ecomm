@@ -1,4 +1,4 @@
-import { useAuth } from "../../../context/auth-context";
+import { useAuth } from "../../context/auth-context";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
@@ -22,11 +22,11 @@ const ProductCard = ({ product }) => {
         {userState?.userDetails?.cart?.some(
           (item) => item._id === product._id
         ) ? (
-          <Link className="btn btn-primary btn-lg" to="/cart">
+          <Link className="btn btn-accent-light btn-lg" to="/cart">
             Go to Cart
           </Link>
         ) : (
-          <button className="btn btn-primary btn-lg">
+          <button className="btn btn-accent btn-lg">
             <i
               className="fas fa-shopping-cart"
               onClick={() => addToCart(product)}

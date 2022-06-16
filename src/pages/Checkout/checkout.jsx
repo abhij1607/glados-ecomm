@@ -1,9 +1,8 @@
-import { CartProductCards } from "./cart-components/cart-product-card";
-import { BillCard } from "./cart-components/bill-card";
+import { CartProductCards } from "../../components/CartProductCard/CartProductCard";
+import { BillCard } from "../../components/BillCard/BillCard";
 import { useAuth } from "../../context/auth-context";
-
-import "./checkout.css";
 import { AddressBook } from "../../components/AddressBook/address-book";
+import "./checkout.css";
 
 const Checkout = () => {
   const { userState } = useAuth();

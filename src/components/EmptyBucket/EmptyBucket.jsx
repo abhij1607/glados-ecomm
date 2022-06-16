@@ -12,7 +12,7 @@ const EmptyBucket = () => {
       />
       <p className="text-center">Your Bucket is Empty</p>
       <div className="text-center">
-        <Link className="btn btn-primary" to="/">
+        <Link className="btn btn-primary" to="/products">
           Shop Now
         </Link>
       </div>

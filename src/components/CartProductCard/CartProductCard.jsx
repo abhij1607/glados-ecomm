@@ -1,4 +1,4 @@
-import { useAuth } from "../../../context/auth-context";
+import { useAuth } from "../../context/auth-context";
 
 const CartProductCards = () => {
   const {
@@ -40,21 +40,21 @@ const CartProductCards = () => {
                       </div>
                       <div className="flex-row gap-1">
                         <p>Quantity</p>
-                        <div className="flex-row p-lg gap-1">
+                        <div className="flex-row item-center p-lg gap-1">
                           <button
+                            className="btn"
                             onClick={() => cartProductDecrement(product)}
                             disabled={product.qty < 2 ? true : false}
                           >
                             <i className="fas fa-sm fa-minus" />
                           </button>
-                          <input
-                            className="input input-primary"
-                            type="number"
-                            name="quantity"
-                            id="quantity"
-                            value={product.qty}
-                          />
-                          <button onClick={() => cartProductIncrement(product)}>
+
+                          <span>{product.qty}</span>
+
+                          <button
+                            className="btn"
+                            onClick={() => cartProductIncrement(product)}
+                          >
                             <i className="fas fa-sm fa-plus" />
                           </button>
                         </div>
@@ -69,7 +69,7 @@ const CartProductCards = () => {
                         Move to Wishlist
                       </button>
                       <button
-                        className="btn btn-secondary btn-lg"
+                        className="btn secondary-link btn-lg"
                         onClick={() => removeFromCart(product)}
                       >
                         <i className="fas fa-shopping-cart" />
