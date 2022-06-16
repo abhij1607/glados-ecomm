@@ -3,8 +3,6 @@ import { BillCard } from "../../components/BillCard/BillCard";
 import { useAuth } from "../../context/auth-context";
 import { EmptyBucket } from "../../components/EmptyBucket/EmptyBucket";
 
-import "./cart.css";
-
 const Cart = () => {
   const { userState } = useAuth();
   return (

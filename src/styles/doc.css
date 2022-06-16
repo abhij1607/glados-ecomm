@@ -40,3 +40,12 @@
 .pdt-category-bar {
   padding: var(--size-16) var(--size-32);
 }
+.wrapper.wrapper-cart {
+  display: grid;
+  grid-template-columns: 60% 1fr 10%;
+}
+@media (max-width: 1100px) {
+  .wrapper.wrapper-cart {
+    grid-template-columns: 1fr;
+  }
+}

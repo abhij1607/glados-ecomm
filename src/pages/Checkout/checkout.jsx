@@ -2,7 +2,6 @@ import { CartProductCards } from "../../components/CartProductCard/CartProductCa
 import { BillCard } from "../../components/BillCard/BillCard";
 import { useAuth } from "../../context/auth-context";
 import { AddressBook } from "../../components/AddressBook/address-book";
-import "./checkout.css";
 
 const Checkout = () => {
   const { userState } = useAuth();
