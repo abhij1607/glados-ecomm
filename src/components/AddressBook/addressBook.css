@@ -1,0 +1,6 @@
+.address-book {
+  width: 56rem;
+}
+.address-book .address-structure {
+  align-items: flex-start;
+}

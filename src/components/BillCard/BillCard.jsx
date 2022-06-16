@@ -1,5 +1,6 @@
 import { useAuth } from "../../context/auth-context";
 import { useNavigate } from "react-router-dom";
+import "./billCard.css";
 
 const BillCard = () => {
   const { userState } = useAuth();

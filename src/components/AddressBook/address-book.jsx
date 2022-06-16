@@ -1,6 +1,7 @@
 import { AddressForm } from "./AddressForm/AddressForm";
 import { useAuth } from "../../context/auth-context";
 import { useState, useEffect } from "react";
+import "./addressBook.css";
 
 const AddressBook = () => {
   const {
@@ -45,6 +46,7 @@ const AddressBook = () => {
           {addressList?.map((address) => {
             return (
               <AddressListCard
+                key={address._id}
                 address={address}
                 handleSelectedAddress={handleSelectedAddress}
               />
@@ -88,7 +90,7 @@ const AddressListCard = ({ address, handleSelectedAddress }) => {
   };
 
   return (
-    <li key={address._id}>
+    <li>
       {!isEditFormActive && (
         <label htmlFor={address._id} className="flex-row gap-1 align-base">
           <input

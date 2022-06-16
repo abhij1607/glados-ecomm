@@ -1,4 +1,5 @@
 import { useAuth } from "../../context/auth-context";
+import "./cartProductCard.css";
 
 const CartProductCards = () => {
   const {
