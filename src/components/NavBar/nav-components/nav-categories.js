@@ -20,7 +20,7 @@ const NavCategories = () => {
       }
     })();
   }, []);
-
+  console.log(dataState.platform);
   return (
     <nav className="pdt-category-bar box-shadow navigation">
       <ul className="align-center list-structure">
@@ -36,7 +36,14 @@ const NavCategories = () => {
                 })
               }
             >
-              <Link className="link" to="/products">
+              <Link
+                className={`link ${
+                  dataState.platform === category.categoryName
+                    ? "link-active"
+                    : ""
+                }`}
+                to="/products"
+              >
                 {category.categoryName}
               </Link>
             </li>
