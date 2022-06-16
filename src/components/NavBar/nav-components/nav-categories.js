@@ -20,7 +20,7 @@ const NavCategories = () => {
       }
     })();
   }, []);
-  console.log(dataState.platform);
+
   return (
     <nav className="pdt-category-bar box-shadow navigation">
       <ul className="align-center list-structure">
