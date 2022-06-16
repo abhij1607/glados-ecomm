@@ -1,6 +1,7 @@
 import "./wishlist.css";
 import axios from "axios";
 import { useAuth } from "../../context/auth-context";
+import { EmptyBucket } from "../../components/EmptyBucket/EmptyBucket";
 
 const Wishlist = () => {
   const { userState, dispatchUserState, userToken } = useAuth();
@@ -51,12 +52,8 @@ const Wishlist = () => {
   return (
     <div className="wrapper">
       <main className="main-pane auto-container">
-        <h1 className="h2">
-          My Wishlist
-          <span className="p-lg txt-wt-light">
-            ` {userState?.userDetails?.wishlist?.length} Items`
-          </span>
-        </h1>
+        <h1 className="h2 text-center">My Wishlist</h1>
+        {userState.userDetails.wishlist.length === 0 && <EmptyBucket />}
         <section className="card-categories">
           <ul className="list-structure">
             {userState?.userDetails?.wishlist?.map((product) => {

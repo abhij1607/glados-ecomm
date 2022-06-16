@@ -36,7 +36,14 @@ const NavCategories = () => {
                 })
               }
             >
-              <Link className="link" to="/products">
+              <Link
+                className={`link ${
+                  dataState.platform === category.categoryName
+                    ? "link-active"
+                    : ""
+                }`}
+                to="/products"
+              >
                 {category.categoryName}
               </Link>
             </li>
