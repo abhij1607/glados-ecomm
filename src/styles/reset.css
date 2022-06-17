@@ -74,3 +74,6 @@ p {
 .txt-wt-bold {
   font-weight: 800;
 }
+.btn.btn-lg {
+  font-size: var(--size-base);
+}

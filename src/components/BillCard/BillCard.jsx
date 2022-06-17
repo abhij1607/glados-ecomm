@@ -60,8 +60,7 @@ const BillCard = () => {
         className="btn btn-accent-light btn-lg"
         onClick={() => navigate("/checkout")}
       >
-        <i className="fas fa-shopping-bag" />
-        Place order
+        <i className="fas fa-shopping-bag">Place order</i>
       </button>
     </aside>
   );

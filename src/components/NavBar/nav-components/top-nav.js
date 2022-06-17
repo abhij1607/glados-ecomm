@@ -111,7 +111,7 @@ const TopNav = () => {
         <li className="list-item-inline">
           {userToken ? (
             <button
-              className="btn btn-primary-outline pd-y-sm"
+              className="btn btn-primary-outline btn-lg fas pd-y-sm"
               onClick={() => {
                 dispatchUserState({ type: "LOGOUT" });
               }}
@@ -119,7 +119,7 @@ const TopNav = () => {
               Logout
             </button>
           ) : (
-            <Link className="btn btn-primary-outline" to="./login">
+            <Link className="btn btn-primary-outline btn-lg fas" to="./login">
               Login
             </Link>
           )}

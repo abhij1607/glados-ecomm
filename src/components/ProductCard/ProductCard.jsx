@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
     <div className="card-container">
       <img className="card-img-top" src={product.image} alt="card-img" />
       <div className="card-info">
-        <h3 className="card-title">{product.title}</h3>
+        <h3 className="card-title txt-md txt-bold">{product.title}</h3>
         <div className="flex-row">
           <span>{product.genre}</span>
           <span className="align-right product-rating pd-x-base">
@@ -22,11 +22,11 @@ const ProductCard = ({ product }) => {
         {userState?.userDetails?.cart?.some(
           (item) => item._id === product._id
         ) ? (
-          <Link className="btn btn-accent-light btn-lg" to="/cart">
+          <Link className="btn btn-accent-light fas btn-lg txt-base" to="/cart">
             Go to Cart
           </Link>
         ) : (
-          <button className="btn btn-accent btn-lg">
+          <button className="btn btn-accent btn-lg txt-base">
             <i
               className="fas fa-shopping-cart"
               onClick={() => addToCart(product)}

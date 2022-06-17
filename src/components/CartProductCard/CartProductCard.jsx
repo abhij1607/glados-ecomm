@@ -36,7 +36,9 @@ const CartProductCards = () => {
                   </div>
                   <div>
                     <div className="card-info">
-                      <h3 className="card-title">{product.title}</h3>
+                      <h3 className="card-title txt-base txt-bold">
+                        {product.title}
+                      </h3>
                       <div className="card-cost">
                         {product.price}₹
                         <span className="p-lg text-strike txt-md align-right">

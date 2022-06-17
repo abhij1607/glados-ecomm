@@ -6,7 +6,8 @@
 .mobile-filter {
   display: none;
 }
-.filter-container {
+.filter-container,
+.filter-wrapper {
   flex-basis: var(--size-320);
 }
 .filter-title,
