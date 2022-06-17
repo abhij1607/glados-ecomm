@@ -8,6 +8,7 @@ import {
   Cart,
   PageNotFound,
   Checkout,
+  OrderSummary,
 } from "./pages";
 import "./styles/index.css";
 import { Routes, Route } from "react-router-dom";
@@ -44,6 +45,14 @@ function App() {
           element={
             <RequiresAuth>
               <Checkout />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/order"
+          element={
+            <RequiresAuth>
+              <OrderSummary />
             </RequiresAuth>
           }
         />
