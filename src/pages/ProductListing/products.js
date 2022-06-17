@@ -8,7 +8,7 @@ import {
   filterCategories,
   filterGenres,
 } from "../../utils/filter-util";
-import { ProductCard } from "./product-card/product-card";
+import { ProductCard } from "../../components/ProductCard/ProductCard";
 
 const Products = () => {
   const { dataState, dataDispatch } = useData();

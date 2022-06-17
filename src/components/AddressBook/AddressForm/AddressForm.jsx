@@ -149,15 +149,15 @@ const AddressForm = ({ initialFormState, toggleIsAddressFormActive }) => {
         <div className="pd-y-base flex-row gap-1">
           <button
             type="submit"
-            className="btn btn-primary"
+            className="btn btn-primary btn-lg fas"
             onClick={submitForm}
           >
             Save
           </button>
-          <button className="btn" onClick={handleCancel}>
+          <button className="btn txt-md" onClick={handleCancel}>
             Cancel
           </button>
-          <button className="btn" onClick={updateDummyData}>
+          <button className="btn txt-md" onClick={updateDummyData}>
             Fill Dummy Data
           </button>
         </div>

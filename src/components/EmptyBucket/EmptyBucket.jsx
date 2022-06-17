@@ -10,9 +10,9 @@ const EmptyBucket = () => {
         height="162"
         className="align-center"
       />
-      <p className="text-center">Your Bucket is Empty</p>
+      <p className="text-center txt-lg">Your Bucket is Empty</p>
       <div className="text-center">
-        <Link className="btn btn-primary" to="/">
+        <Link className="btn btn-primary btn-lg fas" to="/products">
           Shop Now
         </Link>
       </div>

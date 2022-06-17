@@ -1,0 +1,37 @@
+.card-categories {
+  max-width: 120rem;
+}
+section.cart-pdt {
+  padding: var(--size-32);
+}
+.list-non-bullet .cart.card-container {
+  width: 56rem;
+  border: var(--size-16);
+  cursor: default;
+}
+.card-action {
+  padding: var(--size-8);
+}
+.card-img-border {
+  border-radius: var(--size-16);
+}
+.card-cost {
+  font-size: var(--size-24);
+  font-weight: 700;
+}
+.img-box {
+  width: 32rem;
+}
+
+@media (max-width: 767px) {
+  section.cart-pdt {
+    padding: unset;
+  }
+  .list-non-bullet .cart.card-container {
+    width: 100%;
+    flex-direction: column;
+  }
+  .img-box {
+    width: 100%;
+  }
+}

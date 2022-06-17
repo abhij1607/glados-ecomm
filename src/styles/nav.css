@@ -131,9 +131,12 @@
   display: block;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .menu-icon {
     display: block;
+  }
+  #main-menu {
+    display: none;
   }
 }
 

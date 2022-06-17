@@ -1,9 +1,7 @@
-import { CartProductCards } from "./cart-components/cart-product-card";
-import { BillCard } from "./cart-components/bill-card";
+import { CartProductCards } from "../../components/CartProductCard/CartProductCard";
+import { BillCard } from "../../components/BillCard/BillCard";
 import { useAuth } from "../../context/auth-context";
 import { EmptyBucket } from "../../components/EmptyBucket/EmptyBucket";
-
-import "./cart.css";
 
 const Cart = () => {
   const { userState } = useAuth();

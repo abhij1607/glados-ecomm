@@ -1,7 +1,11 @@
-import { useAuth } from "../../../context/auth-context";
+import { useAuth } from "../../context/auth-context";
+import { useNavigate } from "react-router-dom";
+import "./billCard.css";
 
 const BillCard = () => {
   const { userState } = useAuth();
+
+  const navigate = useNavigate();
 
   const initialBill = {
     totalProductPrice: 0,
@@ -52,9 +56,11 @@ const BillCard = () => {
           on this order
         </p>
       </div>
-      <button className="btn btn-primary btn-lg">
-        <i className="fas fa-shopping-bag" />
-        Place order
+      <button
+        className="btn btn-accent-light btn-lg"
+        onClick={() => navigate("/checkout")}
+      >
+        <i className="fas fa-shopping-bag">Place order</i>
       </button>
     </aside>
   );
