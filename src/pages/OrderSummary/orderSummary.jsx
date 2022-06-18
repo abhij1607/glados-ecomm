@@ -11,7 +11,7 @@ const OrderSummary = () => {
   } = useAuth();
   return (
     <>
-      <main className="main-pane auto-container ht-90vh">
+      <main className="main-pane auto-container ht-100vh">
         <h1 className="text-center ">Order Summary</h1>
         <Confetti
           width={window.screen.width}

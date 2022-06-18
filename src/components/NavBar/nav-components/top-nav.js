@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../context/auth-context";
 import { useState } from "react";
+import { SearchBox } from "./SearchBox/SearchBox";
 
 const TopNav = () => {
   const [isSideDrawerActive, setIsSideDrawerActive] = useState(false);
@@ -26,17 +27,7 @@ const TopNav = () => {
         </button>
       </div>
 
-      <div className="flex-row wd-full search-div">
-        <input
-          type="search"
-          className="input input-search input-primary"
-          id="gsearch"
-          name="gsearch"
-        />
-        <button className="btn btn-search" type="search">
-          <i className="fas fa-2x fa-search" title="search" />
-        </button>
-      </div>
+      <SearchBox />
 
       <div className={`modal-wrapper fade ${isSideDrawerActive ? "show" : ""}`}>
         <aside
