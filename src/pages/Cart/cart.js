@@ -12,7 +12,7 @@ const Cart = () => {
         {userState?.userDetails?.cart?.length === 0 && <EmptyBucket />}
         <div className="wrapper wrapper-cart">
           <CartProductCards />
-          {userState?.userDetails?.cart?.length > 0 && <BillCard />}
+          {userState?.userDetails?.cart?.length > 0 && <BillCard page="CART" />}
         </div>
       </main>
     </>

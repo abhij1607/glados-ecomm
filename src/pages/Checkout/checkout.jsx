@@ -14,7 +14,9 @@ const Checkout = () => {
           <CartProductCards />
         </div>
 
-        {userState?.userDetails?.cart?.length > 0 && <BillCard />}
+        {userState?.userDetails?.cart?.length > 0 && (
+          <BillCard page="CHECKOUT" />
+        )}
       </div>
     </>
   );

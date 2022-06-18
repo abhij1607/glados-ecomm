@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   requestAddToCart,
@@ -18,6 +18,8 @@ const initialUserState = {
     wishlist: [],
     addressList: [],
     selectedAddress: {},
+    currentOrder: {},
+    orderSummary: [],
   },
 };
 
@@ -76,6 +78,10 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   let location = useLocation();
 
+  useEffect(() => {
+    localStorage.setItem("userDetails", JSON.stringify(userState.userDetails));
+  }, [userState.userDetails]);
+
   const addToCart = async (product) => {
     if (!userToken) {
       navigate("/login", { state: { from: location }, replace: true });
@@ -106,6 +112,20 @@ const AuthProvider = ({ children }) => {
       }
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const clearCart = async (products) => {
+    try {
+      await Promise.all(
+        products.map((product) => requestRemoveFromCart(userToken, product))
+      );
+      dispatchUserState({
+        type: "UPDATE_CART",
+        payload: [],
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -194,6 +214,7 @@ const AuthProvider = ({ children }) => {
         removeFromWishlist,
         cartProductIncrement,
         cartProductDecrement,
+        clearCart,
         login,
       }}
     >
