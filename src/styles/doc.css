@@ -45,7 +45,10 @@
   grid-template-columns: 60% 1fr 10%;
 }
 .ht-90vh {
-  height: 90vh;
+  min-height: 90vh;
+}
+.ht-100vh {
+  min-height: 100vh;
 }
 .list-non-bullet .card-container:hover {
   cursor: default;

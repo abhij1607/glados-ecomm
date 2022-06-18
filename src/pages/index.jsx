@@ -6,3 +6,4 @@ export { Cart } from "./Cart/cart";
 export { PageNotFound } from "./404/page-not-found";
 export { Checkout } from "./Checkout/checkout";
 export { OrderSummary } from "./OrderSummary/orderSummary";
+export { SearchResult } from "./SearchResult/SearchResult";
