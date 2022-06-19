@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   requestAddToCart,
@@ -16,6 +16,10 @@ const initialUserState = {
   userDetails: JSON.parse(localStorage.getItem("userDetails")) || {
     cart: [],
     wishlist: [],
+    addressList: [],
+    selectedAddress: {},
+    currentOrder: {},
+    orderSummary: [],
   },
 };
 
@@ -47,6 +51,18 @@ const authReducer = (state, { type, payload }) => {
         userDetails: { ...state.userDetails, wishlist: payload },
       };
 
+    case "UPDATE_SELECTED_ADDRESS":
+      return {
+        ...state,
+        userDetails: { ...state.userDetails, selectedAddress: payload },
+      };
+
+    case "UPDATE_ADDRESS_LIST":
+      return {
+        ...state,
+        userDetails: { ...state.userDetails, addressList: payload },
+      };
+
     default:
       return state;
   }
@@ -61,6 +77,10 @@ const AuthProvider = ({ children }) => {
 
   const navigate = useNavigate();
   let location = useLocation();
+
+  useEffect(() => {
+    localStorage.setItem("userDetails", JSON.stringify(userState.userDetails));
+  }, [userState.userDetails]);
 
   const addToCart = async (product) => {
     if (!userToken) {
@@ -92,6 +112,20 @@ const AuthProvider = ({ children }) => {
       }
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const clearCart = async (products) => {
+    try {
+      await Promise.all(
+        products.map((product) => requestRemoveFromCart(userToken, product))
+      );
+      dispatchUserState({
+        type: "UPDATE_CART",
+        payload: [],
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -180,6 +214,7 @@ const AuthProvider = ({ children }) => {
         removeFromWishlist,
         cartProductIncrement,
         cartProductDecrement,
+        clearCart,
         login,
       }}
     >

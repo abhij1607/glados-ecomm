@@ -28,3 +28,33 @@
   display: flex;
   align-items: center;
 }
+.address-book {
+  border: var(--size-16);
+  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%),
+    0 1px 3px 0 rgb(0 0 0 / 12%);
+  padding: 1rem;
+}
+.ht-182 {
+  height: 182px;
+}
+.pdt-category-bar {
+  padding: var(--size-16) var(--size-32);
+}
+.wrapper.wrapper-cart {
+  display: grid;
+  grid-template-columns: 60% 1fr 10%;
+}
+.ht-90vh {
+  min-height: 90vh;
+}
+.ht-100vh {
+  min-height: 100vh;
+}
+.list-non-bullet .card-container:hover {
+  cursor: default;
+}
+@media (max-width: 1100px) {
+  .wrapper.wrapper-cart {
+    grid-template-columns: 1fr;
+  }
+}

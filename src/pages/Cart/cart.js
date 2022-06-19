@@ -1,16 +1,21 @@
-import { CartProductCards } from "./cart-components/cart-product-card";
-import { BillCard } from "./cart-components/bill-card";
+import { CartProductCards } from "../../components/CartProductCard/CartProductCard";
+import { BillCard } from "../../components/BillCard/BillCard";
 import { useAuth } from "../../context/auth-context";
-
-import "./cart.css";
+import { EmptyBucket } from "../../components/EmptyBucket/EmptyBucket";
 
 const Cart = () => {
   const { userState } = useAuth();
   return (
-    <div className="wrapper wrapper-cart">
-      <CartProductCards />
-      {userState?.userDetails?.cart?.length > 0 && <BillCard />}
-    </div>
+    <>
+      <main className="main-pane auto-container">
+        <h1 className="text-center">Cart</h1>
+        {userState?.userDetails?.cart?.length === 0 && <EmptyBucket />}
+        <div className="wrapper wrapper-cart">
+          <CartProductCards />
+          {userState?.userDetails?.cart?.length > 0 && <BillCard page="CART" />}
+        </div>
+      </main>
+    </>
   );
 };
 

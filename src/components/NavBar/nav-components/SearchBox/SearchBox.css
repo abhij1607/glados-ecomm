@@ -1,0 +1,13 @@
+.suggestions-box {
+  border-radius: 15px;
+  max-height: 250px;
+  background: white;
+  color: black;
+  overflow-y: scroll;
+  position: absolute;
+  top: 32px;
+  z-index: 2;
+}
+.suggestion-list:hover {
+  background-color: var(--secondary-color);
+}

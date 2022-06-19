@@ -1,5 +1,13 @@
+/*root*/
+#root {
+  overflow-x: hidden;
+}
 /*filter aside*/
-.filter-container {
+.mobile-filter {
+  display: none;
+}
+.filter-container,
+.filter-wrapper {
   flex-basis: var(--size-320);
 }
 .filter-title,
@@ -10,6 +18,7 @@
 .filter-price-input {
   width: 100%;
 }
+
 /*product cards*/
 .card-categories {
   max-width: 140rem;
@@ -43,8 +52,42 @@
   background-color: var(--primary-light-color);
 }
 
-@media (max-width: 768px) {
+.mobile-element {
+  display: none;
+}
+
+@media (max-width: 767px) {
   .filter-container {
     display: none;
+  }
+  .mobile-filter {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    background-color: var(--txt-clr-secondary);
+    display: flex;
+  }
+  .btn.mobile-filter-btn {
+    background-color: var(--primary-color);
+    color: var(--txt-clr-secondary);
+    font-size: var(--size-md);
+    margin: 1.6rem auto;
+  }
+  .filter-mobile-screen {
+    display: block;
+    position: fixed;
+    background-color: #fff;
+    z-index: 9;
+    width: 100%;
+    top: 0;
+    overflow: hidden;
+    height: 100vh;
+  }
+  .desktop-element {
+    display: none;
+  }
+  .mobile-element {
+    display: block;
   }
 }

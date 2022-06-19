@@ -1,0 +1,12 @@
+.address-book {
+  width: 56rem;
+}
+.address-book .address-structure {
+  align-items: flex-start;
+}
+
+@media (max-width: 767px) {
+  .address-book {
+    width: 100%;
+  }
+}

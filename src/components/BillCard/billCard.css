@@ -1,0 +1,16 @@
+.bill-container {
+  flex-basis: var(--size-480);
+  height: fit-content;
+  margin-top: 80px;
+}
+.bill-price-container {
+  align-items: center;
+  justify-content: space-between;
+}
+.bill-title,
+.bill-price-final {
+  border-bottom: 1px solid var(--secondary-color);
+}
+.bill-price-final {
+  border-top: 1px solid var(--secondary-color);
+}

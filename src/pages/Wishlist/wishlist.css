@@ -33,7 +33,16 @@
   position: absolute;
   top: var(--size-8);
   right: var(--size-8);
+  cursor: pointer;
 }
 .wishlist-icon.fill {
   color: var(--danger);
+}
+@media (max-width: 425px) {
+  .card-categories .list-structure {
+    grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+  }
+  .card-container {
+    width: var(--size-240);
+  }
 }

@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../context/auth-context";
 import { useState } from "react";
+import { SearchBox } from "./SearchBox/SearchBox";
 
 const TopNav = () => {
   const [isSideDrawerActive, setIsSideDrawerActive] = useState(false);
   const { userToken, dispatchUserState, userState } = useAuth();
-  const cartCount = userState?.userDetails?.cart.reduce(
+  const cartCount = userState?.userDetails?.cart?.reduce(
     (acc, curr) => (acc += curr.qty),
     0
   );
@@ -26,17 +27,7 @@ const TopNav = () => {
         </button>
       </div>
 
-      <div className="flex-row wd-full search-div">
-        <input
-          type="search"
-          className="input input-search input-primary"
-          id="gsearch"
-          name="gsearch"
-        />
-        <button className="btn btn-search" type="search">
-          <i className="fas fa-2x fa-search" title="search" />
-        </button>
-      </div>
+      <SearchBox />
 
       <div className={`modal-wrapper fade ${isSideDrawerActive ? "show" : ""}`}>
         <aside
@@ -101,7 +92,7 @@ const TopNav = () => {
         <li className="list-item-inline badge-box">
           <Link className="link" to="./cart">
             <i className="fas fa-2x fa-shopping-cart" />
-            {userState?.userDetails?.cart.length > 0 ? (
+            {userState?.userDetails?.cart?.length > 0 ? (
               <span className="badge badge-notification">{cartCount}</span>
             ) : (
               ""
@@ -111,7 +102,7 @@ const TopNav = () => {
         <li className="list-item-inline">
           {userToken ? (
             <button
-              className="btn btn-primary-outline pd-y-sm"
+              className="btn btn-primary-outline btn-lg fas pd-y-sm"
               onClick={() => {
                 dispatchUserState({ type: "LOGOUT" });
               }}
@@ -119,7 +110,7 @@ const TopNav = () => {
               Logout
             </button>
           ) : (
-            <Link className="btn btn-primary-outline" to="./login">
+            <Link className="btn btn-primary-outline btn-lg fas" to="./login">
               Login
             </Link>
           )}

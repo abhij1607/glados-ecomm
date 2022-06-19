@@ -1,7 +1,11 @@
-import { useAuth } from "../../../context/auth-context";
+import { useAuth } from "../../context/auth-context";
+import { useNavigate } from "react-router-dom";
+import "./billCard.css";
 
-const BillCard = () => {
-  const { userState } = useAuth();
+const BillCard = ({ page }) => {
+  const { userState, clearCart } = useAuth();
+
+  const navigate = useNavigate();
 
   const initialBill = {
     totalProductPrice: 0,
@@ -14,6 +18,15 @@ const BillCard = () => {
       accumulator.discount += (product.maxPrice - product.price) * product.qty;
       return accumulator;
     }, initialBill);
+  };
+
+  const handlePlaceOrder = async (e) => {
+    try {
+      await clearCart(userState.userDetails.cart);
+      navigate("/order");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const bill = billCalculator(userState.userDetails.cart);
@@ -52,10 +65,23 @@ const BillCard = () => {
           on this order
         </p>
       </div>
-      <button className="btn btn-primary btn-lg">
-        <i className="fas fa-shopping-bag" />
-        Place order
-      </button>
+      {page === "CART" && (
+        <button
+          className="btn btn-accent-light btn-lg"
+          onClick={() => navigate("/checkout")}
+        >
+          <i className="fas fa-shopping-bag">Proceed Order</i>
+        </button>
+      )}
+      {page === "CHECKOUT" && (
+        <button
+          className="btn btn-accent-light btn-lg"
+          onClick={handlePlaceOrder}
+          disabled={!userState.userDetails.selectedAddress}
+        >
+          <i className="fas fa-shopping-bag">Place order</i>
+        </button>
+      )}
     </aside>
   );
 };

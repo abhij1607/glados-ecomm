@@ -25,3 +25,9 @@
 .btn-fill {
   width: 100%;
 }
+
+@media (max-width: 767px) {
+  .wrapper .form-box {
+    margin: 8rem 0;
+  }
+}

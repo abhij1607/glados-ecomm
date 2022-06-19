@@ -1,4 +1,5 @@
-import { useAuth } from "../../../context/auth-context";
+import { useAuth } from "../../context/auth-context";
+import "./cartProductCard.css";
 
 const CartProductCards = () => {
   const {
@@ -11,12 +12,16 @@ const CartProductCards = () => {
 
   const handleMoveToWishlist = async (product) => {
     removeFromCart(product);
-    addToWishlist(product);
+    if (
+      !userState.userDetails.wishlist.some((item) => item._id === product._id)
+    ) {
+      addToWishlist(product);
+    }
   };
 
   return (
     <main>
-      <section className="auto-container">
+      <section className="cart-pdt">
         <ul className="list-structure flex-column">
           {userState?.userDetails?.cart?.map((product) => {
             return (
@@ -31,7 +36,9 @@ const CartProductCards = () => {
                   </div>
                   <div>
                     <div className="card-info">
-                      <h3 className="card-title">{product.title}</h3>
+                      <h3 className="card-title txt-base txt-bold">
+                        {product.title}
+                      </h3>
                       <div className="card-cost">
                         {product.price}₹
                         <span className="p-lg text-strike txt-md align-right">
@@ -40,21 +47,21 @@ const CartProductCards = () => {
                       </div>
                       <div className="flex-row gap-1">
                         <p>Quantity</p>
-                        <div className="flex-row p-lg gap-1">
+                        <div className="flex-row item-center p-lg gap-1">
                           <button
+                            className="btn"
                             onClick={() => cartProductDecrement(product)}
                             disabled={product.qty < 2 ? true : false}
                           >
                             <i className="fas fa-sm fa-minus" />
                           </button>
-                          <input
-                            className="input input-primary"
-                            type="number"
-                            name="quantity"
-                            id="quantity"
-                            value={product.qty}
-                          />
-                          <button onClick={() => cartProductIncrement(product)}>
+
+                          <span>{product.qty}</span>
+
+                          <button
+                            className="btn"
+                            onClick={() => cartProductIncrement(product)}
+                          >
                             <i className="fas fa-sm fa-plus" />
                           </button>
                         </div>
@@ -69,7 +76,7 @@ const CartProductCards = () => {
                         Move to Wishlist
                       </button>
                       <button
-                        className="btn btn-secondary btn-lg"
+                        className="btn secondary-link btn-lg"
                         onClick={() => removeFromCart(product)}
                       >
                         <i className="fas fa-shopping-cart" />
